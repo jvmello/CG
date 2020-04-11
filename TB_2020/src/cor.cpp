@@ -15,7 +15,7 @@ Cor::Cor(int x1_, int y1_, int x2_, int y2_, float r_, float g_, float b_)
 	R = r_;
 	G = g_;
 	B = b_;
-	colide = 0;
+	ativado = 0;
 }
 
 int Cor::getx1(void)
@@ -57,6 +57,11 @@ void Cor::draw()
 {
 	color(R, G, B);
 	rectFill(x1, y1, x2, y2);
+	if(ativado)
+	{
+		color(0, 0, 0);
+		rect(x1, y1, x2, y2);
+	}
 }
 
 int Cor::colisao(int mX, int mY)

@@ -116,9 +116,9 @@
 	"Bmp.h"
 	<string.h>
 
-1586553541 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\botao.h
+1586566777 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\botao.h
 
-1586553542 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\botao.cpp
+1586566784 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\botao.cpp
 	"botao.h"
 	"gl_canvas2d.h"
 
@@ -140,11 +140,11 @@
 
 1586541775 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\painel.h
 
-1586553568 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\cor.cpp
+1586567476 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\cor.cpp
 	"cor.h"
 	"gl_canvas2d.h"
 
-1586553540 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\cor.h
+1586567446 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\cor.h
 
 1586559029 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\figura.cpp
 	"cor.h"

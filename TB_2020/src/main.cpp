@@ -24,6 +24,37 @@ Cor *c1, *c2, *c3, *c4, *c5, *c6, *c7, *c8;
 int screenWidth = 1200, screenHeight = 600;
 int mouseX, mouseY;
 
+//Rotacionar -> mudar as coordenadas de cada parte
+//Fazer um preenchimento pika
+//Desenhar as figuras de acordo com o que o usuário quer
+//Fazer o negócio pra diminuir talvez
+//Ver sobre arrastar mouse
+
+void desativa_tudo(char* tipo)
+{
+    if(tipo == "Botao")
+    {
+        b2->ativado = 0;
+        b3->ativado = 0;
+        b4->ativado = 0;
+        b5->ativado = 0;
+        b6->ativado = 0;
+        b7->ativado = 0;
+        b8->ativado = 0;
+    }
+    if(tipo == "Cor")
+    {
+        c1->ativado = 0;
+        c2->ativado = 0;
+        c3->ativado = 0;
+        c4->ativado = 0;
+        c5->ativado = 0;
+        c6->ativado = 0;
+        c7->ativado = 0;
+        c8->ativado = 0;
+    }
+}
+
 void DrawMouseScreenCoords()
 {
     char str[100];
@@ -68,7 +99,7 @@ void desenha()
 {
     color(0.9, 0.9, 0.9);
     rectFill(0, 0, 1200, 600);
-    
+
     p1->draw();
     p2->draw();
 
@@ -135,7 +166,87 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
 
     if( state == 0 ) //clicou
     {
-        
+        if(b2->colisao(mouseX, mouseY))
+        {
+            desativa_tudo("Botao");
+            b2->ativado = 1;
+        }
+        if(b3->colisao(mouseX, mouseY))
+        {
+            desativa_tudo("Botao");
+            b3->ativado = 1;
+        }
+        if(b4->colisao(mouseX, mouseY))
+        {
+            desativa_tudo("Botao");
+            b4->ativado = 1;
+        }
+        if(b5->colisao(mouseX, mouseY))
+        {
+            desativa_tudo("Botao");
+            b5->ativado = 1;
+        }
+        if(b6->colisao(mouseX, mouseY))
+        {
+            desativa_tudo("Botao");
+            b6->ativado = 1;
+        }
+        if(b7->colisao(mouseX, mouseY))
+        {
+            desativa_tudo("Botao");
+            b7->ativado = 1;
+        }
+        if(b8->colisao(mouseX, mouseY))
+        {
+            desativa_tudo("Botao");
+            b8->ativado = 1;
+        }
+
+        if(c1->colisao(mouseX, mouseY))
+        {
+            desativa_tudo("Cor");
+            c1->ativado = 1;
+        }
+        if(c2->colisao(mouseX, mouseY))
+        {
+            desativa_tudo("Cor");
+            c2->ativado = 1;
+        }
+        if(c3->colisao(mouseX, mouseY))
+        {
+            desativa_tudo("Cor");
+            c3->ativado = 1;
+        }
+        if(c4->colisao(mouseX, mouseY))
+        {
+            desativa_tudo("Cor");
+            c4->ativado = 1;
+        }
+        if(c5->colisao(mouseX, mouseY))
+        {
+            desativa_tudo("Cor");
+            c5->ativado = 1;
+        }
+        if(c6->colisao(mouseX, mouseY))
+        {
+            desativa_tudo("Cor");
+            c6->ativado = 1;
+        }
+        if(c7->colisao(mouseX, mouseY))
+        {
+            desativa_tudo("Cor");
+            c7->ativado = 1;
+        }
+        if(c8->colisao(mouseX, mouseY))
+        {
+            desativa_tudo("Cor");
+            c8->ativado = 1;
+        }
+
+        if(p1->colisao(mouseX, mouseY))
+        {
+
+        }
     }
 }
 

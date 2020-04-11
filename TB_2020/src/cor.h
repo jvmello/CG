@@ -8,7 +8,7 @@ class Cor
    public:
         int x1, x2, y1, y2;
         float R, G, B;
-        int colide;
+        int ativado;
         Cor(int, int, int, int, float, float, float);
         int    getx1(void);
         int    getx2(void);
