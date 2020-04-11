@@ -1,0 +1,154 @@
+# depslib dependency file v1.0
+1584042869 source:d:\ufsm\disciplinas\computacao grafica\demos\gl_1_canvasglut\src\gl_canvas2d.cpp
+	"gl_canvas2d.h"
+	<GL/glut.h>
+
+1584042945 d:\ufsm\disciplinas\computacao grafica\demos\gl_1_canvasglut\src\gl_canvas2d.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+
+1426372440 d:\ufsm\disciplinas\computacao grafica\demos\gl_1_canvasglut\include\gl\glut.h
+	"freeglut_std.h"
+
+1437579942 d:\ufsm\disciplinas\computacao grafica\demos\gl_1_canvasglut\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1426372440 d:\ufsm\disciplinas\computacao grafica\demos\gl_1_canvasglut\include\gl\freeglut_ext.h
+	<stdarg.h>
+
+1582231017 source:d:\ufsm\disciplinas\computacao grafica\demos\gl_1_canvasglut\src\main_cpp.cpp
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	"gl_canvas2d.h"
+	"Bola.h"
+	"Relogio.h"
+	"Botao.h"
+
+1582229965 d:\ufsm\disciplinas\computacao grafica\demos\gl_1_canvasglut\src\bola.h
+	"gl_canvas2d.h"
+
+1193164156 d:\ufsm\disciplinas\computacao grafica\demos\gl_1_canvasglut\src\relogio.h
+	"gl_canvas2d.h"
+
+1582318273 d:\ufsm\disciplinas\computacao grafica\demos\gl_1_canvasglut\src\botao.h
+	"gl_canvas2d.h"
+
+1582230474 source:d:\ufsm\disciplinas\computacao grafica\demos\gl_1_canvasglut\src\relogio.cpp
+	"Relogio.h"
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+
+1584042616 source:d:\ufsm\disciplinas\computacao grafica\demos\gl_1_canvasglut\src\main.cpp
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	"gl_canvas2d.h"
+	"Bola.h"
+	"Relogio.h"
+	"Botao.h"
+
+1585611132 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\gl_canvas2d.cpp
+	"gl_canvas2d.h"
+	<GL/glut.h>
+
+1585698687 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\gl_canvas2d.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+
+1426372440 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\include\gl\glut.h
+	"freeglut_std.h"
+
+1437579942 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1426372440 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\include\gl\freeglut_ext.h
+	<stdarg.h>
+
+1586566650 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\main.cpp
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	"gl_canvas2d.h"
+	"botao.h"
+	"checkbox.h"
+	"painel.h"
+	"uteis.h"
+	"cor.h"
+	"figura.h"
+
+1585520498 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\bmp.h
+	<stdio.h>
+	<stdlib.h>
+
+1585520116 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\bmp.cpp
+	"Bmp.h"
+	<string.h>
+
+1586553541 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\botao.h
+
+1586553542 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\botao.cpp
+	"botao.h"
+	"gl_canvas2d.h"
+
+1585698378 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\slider.h
+
+1586025050 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\checkbox.h
+
+1586025046 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\checkbox.cpp
+	"checkbox.h"
+	"gl_canvas2d.h"
+
+1586542219 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\uteis.h
+
+1586542229 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\uteis.cpp
+
+1586545753 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\painel.cpp
+	"painel.h"
+	"gl_canvas2d.h"
+
+1586541775 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\painel.h
+
+1586553568 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\cor.cpp
+	"cor.h"
+	"gl_canvas2d.h"
+
+1586553540 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\cor.h
+
+1586559029 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\figura.cpp
+	"cor.h"
+	"gl_canvas2d.h"
+
+1586557920 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\figura.h
+
