@@ -57,6 +57,8 @@
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/painel.cpp" />
 		<Unit filename="src/painel.h" />
+		<Unit filename="src/ponto.cpp" />
+		<Unit filename="src/ponto.h" />
 		<Unit filename="src/uteis.cpp" />
 		<Unit filename="src/uteis.h" />
 		<Extensions>

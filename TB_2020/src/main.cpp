@@ -6,9 +6,13 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <vector>
+
+using namespace std;
 
 #include "gl_canvas2d.h"
 
+#include "ponto.h"
 #include "botao.h"
 #include "checkbox.h"
 #include "painel.h"
@@ -17,12 +21,15 @@
 #include "figura.h"
 
 Botao *b2, *b3, *b4, *b5, *b6, *b7, *b8;
-Botao *bdeletar, *brotmenos, *brotmais, *bsalvar, *bcarregar;
+Botao *bdeletar, *brotmenos, *brotmais, *bsalvar, *bcarregar, *bselecionar, *bpreencher, *binserir;
 Painel *p1, *p2;
 Cor *c1, *c2, *c3, *c4, *c5, *c6, *c7, *c8;
 
 int screenWidth = 1200, screenHeight = 600;
 int mouseX, mouseY;
+int op = 5;
+
+vector<Figura*> figuras;
 
 //Rotacionar -> mudar as coordenadas de cada parte
 //Fazer um preenchimento pika
@@ -32,7 +39,7 @@ int mouseX, mouseY;
 
 void desativa_tudo(char* tipo)
 {
-    if(tipo == "Botao")
+    if(tipo == "Menu")
     {
         b2->ativado = 0;
         b3->ativado = 0;
@@ -52,6 +59,20 @@ void desativa_tudo(char* tipo)
         c6->ativado = 0;
         c7->ativado = 0;
         c8->ativado = 0;
+    }
+    if(tipo == "Adicional")
+    {
+        bdeletar->ativado = 0;
+        bselecionar->ativado = 0;
+        bpreencher->ativado = 0;
+        binserir->ativado = 0;
+    }
+    if(tipo == "Figura")
+    {
+        for(size_t i = 0; i < figuras.size(); ++i)
+        {
+            figuras[i]->ativada = 0;
+        }
     }
 }
 
@@ -88,7 +109,10 @@ void init()
     brotmenos = new Botao(865, 260, 1020, 280, "-");
     brotmais = new Botao(1030, 260, 1185, 280, "+");
 
-    bdeletar = new Botao(865, 200, 1185, 240, "Deletar");
+    bdeletar = new Botao(865, 200, 1020, 240, "Deletar");
+    bselecionar = new Botao(1030, 200, 1185, 240, "Selecionar");
+    bpreencher = new Botao(865, 160, 1020, 200, "Preencher");
+    binserir = new Botao(1030, 160, 1185, 200, "Inserir");
 
     bsalvar = new Botao(865, 120, 1185, 140, "Salvar arquivo");
     bcarregar = new Botao(865, 100, 1185, 120, "Carregar arquivo");
@@ -98,7 +122,7 @@ void init()
 void desenha()
 {
     color(0.9, 0.9, 0.9);
-    rectFill(0, 0, 1200, 600);
+    rectFill(0, 0, 1210, 600);
 
     p1->draw();
     p2->draw();
@@ -130,12 +154,34 @@ void desenha()
     brotmenos->draw();
     brotmais->draw();
 
-    text(985, 220, "Funcoes adicionais:");
+    //text(985, 220, "Funcoes adicionais:");
     bdeletar->draw();
+    bselecionar->draw();
+    bpreencher->draw();
+    binserir->draw();
 
-    text(985, 180, "Arquivo:");
+    //text(985, 180, "Arquivo:");
     bsalvar->draw();
     bcarregar->draw();
+
+    for(size_t i = 0; i < figuras.size(); ++i)
+    {
+        figuras[i]->draw();
+    }
+}
+
+Cor* getCor()
+{
+    if(c1->ativado) return c1;
+    if(c2->ativado) return c2;
+    if(c3->ativado) return c3;
+    if(c4->ativado) return c4;
+    if(c5->ativado) return c5;
+    if(c6->ativado) return c6;
+    if(c7->ativado) return c7;
+    if(c8->ativado) return c8;
+
+    return new Cor(0, 0, 0, 0, 0, 0, 0);
 }
 
 void render()
@@ -166,40 +212,67 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
 
     if( state == 0 ) //clicou
     {
+        Cor *cor = getCor();
+
         if(b2->colisao(mouseX, mouseY))
         {
-            desativa_tudo("Botao");
+            desativa_tudo("Menu");
             b2->ativado = 1;
         }
         if(b3->colisao(mouseX, mouseY))
         {
-            desativa_tudo("Botao");
+            desativa_tudo("Menu");
             b3->ativado = 1;
         }
         if(b4->colisao(mouseX, mouseY))
         {
-            desativa_tudo("Botao");
+            desativa_tudo("Menu");
             b4->ativado = 1;
         }
         if(b5->colisao(mouseX, mouseY))
         {
-            desativa_tudo("Botao");
+            desativa_tudo("Menu");
             b5->ativado = 1;
         }
         if(b6->colisao(mouseX, mouseY))
         {
-            desativa_tudo("Botao");
+            desativa_tudo("Menu");
             b6->ativado = 1;
         }
         if(b7->colisao(mouseX, mouseY))
         {
-            desativa_tudo("Botao");
+            desativa_tudo("Menu");
             b7->ativado = 1;
         }
         if(b8->colisao(mouseX, mouseY))
         {
-            desativa_tudo("Botao");
+            desativa_tudo("Menu");
             b8->ativado = 1;
+        }
+
+        if(bdeletar->colisao(mouseX, mouseY))
+        {
+            desativa_tudo("Adicional");
+            bdeletar->ativado = 1;
+            op = 2;
+        }
+        if(bselecionar->colisao(mouseX, mouseY))
+        {
+            desativa_tudo("Adicional");
+            bselecionar->ativado = 1;
+            op = 0;
+        }
+        if(bpreencher->colisao(mouseX, mouseY))
+        {
+            desativa_tudo("Adicional");
+            bpreencher->ativado = 1;
+            op = 3;
+        }
+        if(binserir->colisao(mouseX, mouseY))
+        {
+            desativa_tudo("Adicional");
+            binserir->ativado = 1;
+            op = 1;
         }
 
         if(c1->colisao(mouseX, mouseY))
@@ -245,7 +318,56 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
 
         if(p1->colisao(mouseX, mouseY))
         {
+            printf("%d\n\n", op);
+            if(op == 0) //selecionar
+            {
+                desativa_tudo("Figura");
+                for(size_t i = 0; i < figuras.size(); ++i)
+                {
+                    if(figuras[i]->colisao(mouseX, mouseY))
+                    {
+                        figuras[i]->ativada = 1;
+                    }
+                }
+            }
+            else if(op == 1) //inserir
+            {
+                int l = 0;
+                if(b2->ativado) l = 2;
+                if(b3->ativado) l = 3;
+                if(b4->ativado) l = 4;
+                if(b5->ativado) l = 5;
+                if(b6->ativado) l = 6;
+                if(b7->ativado) l = 7;
+                if(b8->ativado) l = 8;
 
+                Figura *f = new Figura(mouseX, mouseY, cor->R, cor->G, cor->B, l);
+                figuras.push_back(f);
+            }
+            else if(op == 2) //deletar
+            {
+                for(size_t i = 0; i < figuras.size(); ++i)
+                {
+                    if(figuras[i]->colisao(mouseX, mouseY))
+                    {
+                        figuras.erase(figuras.begin()+i);
+                    }
+                }
+            }
+            else if(op == 3) //preencher
+            {
+                for(size_t i = 0; i < figuras.size(); ++i)
+                {
+                    if(figuras[i]->colisao(mouseX, mouseY))
+                    {
+                        //figuras[i]->Rp = cor->R;
+                        //figuras[i]->Gp = cor->G;
+                        //figuras[i]->Bp = cor->B;
+
+                        //figuras[i]->preenchida = 1;
+                    }
+                }
+            }
         }
     }
 }

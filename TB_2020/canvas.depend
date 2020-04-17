@@ -69,7 +69,7 @@
 	"gl_canvas2d.h"
 	<GL/glut.h>
 
-1585698687 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\gl_canvas2d.h
+1587081457 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\gl_canvas2d.h
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
@@ -94,13 +94,15 @@
 1426372440 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\include\gl\freeglut_ext.h
 	<stdarg.h>
 
-1586566650 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\main.cpp
+1587085021 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<math.h>
 	<stdio.h>
 	<stdlib.h>
+	<vector>
 	"gl_canvas2d.h"
+	"ponto.h"
 	"botao.h"
 	"checkbox.h"
 	"painel.h"
@@ -116,9 +118,10 @@
 	"Bmp.h"
 	<string.h>
 
-1586566777 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\botao.h
+1586996955 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\botao.h
+	"ponto.h"
 
-1586566784 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\botao.cpp
+1586998884 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\botao.cpp
 	"botao.h"
 	"gl_canvas2d.h"
 
@@ -140,15 +143,22 @@
 
 1586541775 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\painel.h
 
-1586567476 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\cor.cpp
+1586628224 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\cor.cpp
 	"cor.h"
 	"gl_canvas2d.h"
 
 1586567446 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\cor.h
 
-1586559029 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\figura.cpp
-	"cor.h"
+1587083926 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\figura.cpp
+	"figura.h"
 	"gl_canvas2d.h"
 
-1586557920 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\figura.h
+1587083550 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\figura.h
+	<math.h>
+	"ponto.h"
+
+1586997080 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\ponto.h
+
+1586997198 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\ponto.cpp
+	"ponto.h"
 

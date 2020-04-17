@@ -2,14 +2,23 @@
 /*
     
 */
+#include <math.h>
+#include "ponto.h"
 
 class Figura
 {
    public:
-        int posX[8], posY[8];
+        Ponto *p[8];
         float R, G, B;
-        int colide;
-        Figura(float, float, float);
+        float Rp, Gp, Bp;
+        int ativada;
+        int preenchida;
+        int lados;
+        Figura(int, int, float, float, float, int);
+        int maiorX(int);
+        int maiorY(int);
+        int menorX(int);
+        int menorY(int);
         float  getR(void);
         float  getG(void);
         float  getB(void);
