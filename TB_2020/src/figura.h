@@ -11,6 +11,7 @@ class Figura
         Ponto *p[8];
         float R, G, B;
         float Rp, Gp, Bp;
+        int px, py;
         int ativada;
         int preenchida;
         int lados;
@@ -19,6 +20,8 @@ class Figura
         int maiorY(int);
         int menorX(int);
         int menorY(int);
+        void rotaciona_horario();
+        void rotaciona_anti_horario();
         float  getR(void);
         float  getG(void);
         float  getB(void);

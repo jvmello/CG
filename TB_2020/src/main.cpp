@@ -21,7 +21,7 @@ using namespace std;
 #include "figura.h"
 
 Botao *b2, *b3, *b4, *b5, *b6, *b7, *b8;
-Botao *bdeletar, *brotmenos, *brotmais, *bsalvar, *bcarregar, *bselecionar, *bpreencher, *binserir;
+Botao *bdeletar, *brotant, *brothor, *bsalvar, *bcarregar, *bselecionar, *bpreencher, *binserir;
 Painel *p1, *p2;
 Cor *c1, *c2, *c3, *c4, *c5, *c6, *c7, *c8;
 
@@ -33,7 +33,6 @@ vector<Figura*> figuras;
 
 //Rotacionar -> mudar as coordenadas de cada parte
 //Fazer um preenchimento pika
-//Desenhar as figuras de acordo com o que o usuário quer
 //Fazer o negócio pra diminuir talvez
 //Ver sobre arrastar mouse
 
@@ -106,8 +105,8 @@ void init()
     c7 = new Cor(1027, 325, 1104, 355, 1, 1, 1);
     c8 = new Cor(1108, 325, 1185, 355, 0, 0, 0);
 
-    brotmenos = new Botao(865, 260, 1020, 280, "-");
-    brotmais = new Botao(1030, 260, 1185, 280, "+");
+    brotant = new Botao(865, 260, 1020, 280, "-");
+    brothor = new Botao(1030, 260, 1185, 280, "+");
 
     bdeletar = new Botao(865, 200, 1020, 240, "Deletar");
     bselecionar = new Botao(1030, 200, 1185, 240, "Selecionar");
@@ -116,6 +115,11 @@ void init()
 
     bsalvar = new Botao(865, 120, 1185, 140, "Salvar arquivo");
     bcarregar = new Botao(865, 100, 1185, 120, "Carregar arquivo");
+
+    Figura *ff = new Figura(200, 200, 0, 0, 0, 2);
+    ff->ativada = 1;
+    figuras.push_back(ff);
+
 }
 
 //Função a ser chamada na render para organizar o código, basicamente desenha cada elemento
@@ -151,8 +155,8 @@ void desenha()
     c8->draw();
 
     text(985, 305, "Rotacionar:");
-    brotmenos->draw();
-    brotmais->draw();
+    brotant->draw();
+    brothor->draw();
 
     //text(985, 220, "Funcoes adicionais:");
     bdeletar->draw();
@@ -316,9 +320,23 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
             c8->ativado = 1;
         }
 
+        if(brotant->colisao(mouseX, mouseY))
+        {
+            for(size_t i = 0; i < figuras.size(); ++i)
+            {
+            	if(figuras[i]->ativada) figuras[i]->rotaciona_anti_horario();
+            }
+        }
+        if(brothor->colisao(mouseX, mouseY))
+        {
+            for(size_t i = 0; i < figuras.size(); ++i)
+            {
+            	if(figuras[i]->ativada) figuras[i]->rotaciona_horario();
+            }
+        }
+
         if(p1->colisao(mouseX, mouseY))
         {
-            printf("%d\n\n", op);
             if(op == 0) //selecionar
             {
                 desativa_tudo("Figura");

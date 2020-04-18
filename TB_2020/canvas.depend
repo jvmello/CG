@@ -94,7 +94,7 @@
 1426372440 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\include\gl\freeglut_ext.h
 	<stdarg.h>
 
-1587085021 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\main.cpp
+1587250936 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<math.h>
@@ -149,11 +149,11 @@
 
 1586567446 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\cor.h
 
-1587083926 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\figura.cpp
+1587250156 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\figura.cpp
 	"figura.h"
 	"gl_canvas2d.h"
 
-1587083550 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\figura.h
+1587250037 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\figura.h
 	<math.h>
 	"ponto.h"
 

@@ -11,6 +11,10 @@ Figura::Figura(int x, int y, float r_, float g_, float b_, int l)
     R = r_;
     G = g_;
     B = b_;
+
+    px = x;
+    py = y;
+
     ativada = 0;
     lados = l;
     preenchida = 0;
@@ -109,30 +113,71 @@ float Figura::getB(void)
     }
 }*/
 
+Ponto* rotaciona_ponto(Ponto* p, int px, int py, int angulo, int op)
+{
+    double ang_rotacao = (double) angulo / 180.0 * (PI_2/2);
+    float s = sin(ang_rotacao);
+    float c = cos(ang_rotacao);
+
+    p->x -= px;
+    p->y -= py;
+
+    float xnew, ynew;
+
+    if(!op) //antihorario
+    {
+        xnew = p->x * c - p->y * s;
+        ynew = p->x * s + p->y * c;    
+    }
+    else
+    {
+        xnew = p->x * c - p->y * s;
+        ynew = p->x * s + p->y * c;
+    }    
+
+    p->x = xnew + px;
+    p->y = ynew + py;
+
+    return p;
+}
+
+void Figura::rotaciona_anti_horario()
+{
+    for(int i = 0; i < lados; i++)
+    {
+        p[i] = rotaciona_ponto(p[i], px, py, 30, 0);
+    }
+}
+
+void Figura::rotaciona_horario()
+{
+    for(int i = 0; i < lados; i++)
+    {
+        p[i] = rotaciona_ponto(p[i], px, py, 30, 1);
+    }
+}
+
 void Figura::draw()
 {
+    color(0, 0, 0);
+    if(ativada)
+    {
+        for(int i = 0; i < lados; i++)
+        {
+            circleFill(p[i]->x, p[i]->y, 2, 30);
+        }
+    }
+
     color(R, G, B);
     if(lados == 2) //linha
     {
         line(p[0]->x, p[0]->y, p[1]->x, p[1]->y);
-        
-        if(ativada)
-        {
-            color(0, 0, 0);
-            rect(p[0]->x, p[0]->y, p[1]->x, p[1]->y);
-        }
     }
     if(lados == 3)
     {
         line(p[0]->x, p[0]->y, p[1]->x, p[1]->y);
         line(p[1]->x, p[1]->y, p[2]->x, p[2]->y);
         line(p[2]->x, p[2]->y, p[0]->x, p[0]->y);
-
-        if(ativada)
-        {
-            color(0, 0, 0);
-            rect(menorX(3), menorY(3), maiorX(3), maiorY(3));
-        }
     }
     if(lados == 4)
     {
@@ -140,12 +185,6 @@ void Figura::draw()
         line(p[1]->x, p[1]->y, p[2]->x, p[2]->y);
         line(p[2]->x, p[2]->y, p[3]->x, p[3]->y);
         line(p[3]->x, p[3]->y, p[0]->x, p[0]->y);
-
-        if(ativada)
-        {
-            color(0, 0, 0);
-            rect(menorX(4), menorY(4), maiorX(4), maiorY(4));
-        }
     }
     if(lados == 5)
     {
@@ -215,8 +254,6 @@ int Figura::menorY(int l)
 
 int Figura::colisao(int mX, int mY)
 {
-    printf("\n%d %d", mX, mY);
-    printf("\n%d %d %d %d", menorX(lados), menorY(lados), maiorX(lados), maiorY(lados));
     if(mX >= menorX(lados) && mX <= maiorX(lados) && mY >= menorY(lados) && mY <= maiorY(lados)){
         return 1;
     }
