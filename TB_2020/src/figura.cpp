@@ -6,7 +6,7 @@
 #include "figura.h"
 #include "gl_canvas2d.h"
 
-Figura::Figura(int x, int y, float r_, float g_, float b_, int l)
+Figura::Figura(int x, int y, float r_, float g_, float b_, int t, int tam)
 {
     R = r_;
     G = g_;
@@ -15,52 +15,33 @@ Figura::Figura(int x, int y, float r_, float g_, float b_, int l)
     px = x;
     py = y;
 
+    tamanho = tam;
+
     ativada = 0;
-    lados = l;
-    preenchida = 0;
+    tipo = t;
+    preenchida = 1;
 
-    if(lados == 2) //linha
+    if(tipo == 1) //linha
     {
-        p[0] = new Ponto(x - 50, y);
-        p[1] = new Ponto(x + 50, y);
-    }
-    if(lados == 3) //triângulo
-    {
-        p[0] = new Ponto(x - 50, y);
-        p[1] = new Ponto(x, y + 50);
-        p[2] = new Ponto(x + 50, y - 10);
-    }
-    if(lados == 4)
-    {
-        p[0] = new Ponto(x - 50, y - 50);
-        p[1] = new Ponto(x - 50, y + 50);
-        p[2] = new Ponto(x + 50, y + 50);
-        p[3] = new Ponto(x + 50, y - 50);
-    }
-    if(lados == 5)
-    {
-        /*pX[0] = x - 50;
-        pY[0] = y - 50;
-        pX[1] = x - 50;
-        pY[1] = y + 50;
-        pX[2] = x + 50;
-        pY[2] = y + 50;
-        pX[3] = x + 50;
-        pY[3] = y - 50;
-        pX[4] = x + 50;
-        pY[4] = y - 50;*/
-    }
-    if(lados == 6)
-    {
+        p[0] = new Ponto(x - tamanho, y);
+        p[1] = new Ponto(x + tamanho, y);
 
+        pontos = 2;
     }
-    if(lados == 7)
+    if(tipo == 2) //circulo
     {
-
+        //p[0] = new Ponto(x - tamanho, y);
+        //p[1] = new Ponto(x, y + tamanho);
+        //p[2] = new Ponto(x + tamanho, y - 10);
     }
-    if(lados == 8)
+    if(tipo == 3) //quadrado
     {
+        p[0] = new Ponto(x - tamanho, y - tamanho);
+        p[1] = new Ponto(x - tamanho, y + tamanho);
+        p[2] = new Ponto(x + tamanho, y + tamanho);
+        p[3] = new Ponto(x + tamanho, y - tamanho);
 
+        pontos = 4;
     }
 }
 
@@ -79,39 +60,28 @@ float Figura::getB(void)
     return B;
 }
 
-/*void Figura::preenche()
+void Figura::preenche()
 {
-    color(Rp, Gp, Bp);
-    if(lados == 3)
+    color(0, 0, 0);
+    if(tipo == 2)
     {
-        line(p[0]->x, p[0]->y, p[1]->x, p[1]->y);
-        line(p[1]->x, p[1]->y, p[2]->x, p[2]->y);
-        line(p[2]->x, p[2]->y, p[0]->x, p[0]->y);
+        
     }
-    if(lados == 4)
+    if(tipo == 3)
     {
+        for(int x = 0; x < 1200; x++)
+        {
+            for(int y = 0; y < 800; y++)   
+            {
+                if(colisao(x, y)) point(x, y);
+            }
+        }
         line(p[0]->x, p[0]->y, p[1]->x, p[1]->y);
         line(p[1]->x, p[1]->y, p[2]->x, p[2]->y);
         line(p[2]->x, p[2]->y, p[3]->x, p[3]->y);
         line(p[3]->x, p[3]->y, p[0]->x, p[0]->y);
     }
-    if(lados == 5)
-    {
-
-    }
-    if(lados == 6)
-    {
-
-    }
-    if(lados == 7)
-    {
-
-    }
-    if(lados == 8)
-    {
-
-    }
-}*/
+}
 
 Ponto* rotaciona_ponto(Ponto* p, int px, int py, int angulo, int op)
 {
@@ -131,8 +101,8 @@ Ponto* rotaciona_ponto(Ponto* p, int px, int py, int angulo, int op)
     }
     else
     {
-        xnew = p->x * c - p->y * s;
-        ynew = p->x * s + p->y * c;
+        xnew = p->x * c + p->y * s;
+        ynew = -p->x * s + p->y * c;
     }    
 
     p->x = xnew + px;
@@ -143,7 +113,7 @@ Ponto* rotaciona_ponto(Ponto* p, int px, int py, int angulo, int op)
 
 void Figura::rotaciona_anti_horario()
 {
-    for(int i = 0; i < lados; i++)
+    for(int i = 0; i < pontos; i++)
     {
         p[i] = rotaciona_ponto(p[i], px, py, 30, 0);
     }
@@ -151,56 +121,64 @@ void Figura::rotaciona_anti_horario()
 
 void Figura::rotaciona_horario()
 {
-    for(int i = 0; i < lados; i++)
+    for(int i = 0; i < pontos; i++)
     {
         p[i] = rotaciona_ponto(p[i], px, py, 30, 1);
     }
 }
 
-void Figura::draw()
+void Figura::desenha()
 {
-    color(0, 0, 0);
-    if(ativada)
-    {
-        for(int i = 0; i < lados; i++)
-        {
-            circleFill(p[i]->x, p[i]->y, 2, 30);
-        }
-    }
-
     color(R, G, B);
-    if(lados == 2) //linha
+    if(tipo == 1) //linha
     {
         line(p[0]->x, p[0]->y, p[1]->x, p[1]->y);
+        if(ativada)
+        {
+            color(0, 0, 0);
+            for(int i = 0; i < 2; i++)
+            {
+                circleFill(p[i]->x, p[i]->y, 2, 30);
+            }
+        }
     }
-    if(lados == 3)
+    if(tipo == 2)
     {
         line(p[0]->x, p[0]->y, p[1]->x, p[1]->y);
         line(p[1]->x, p[1]->y, p[2]->x, p[2]->y);
         line(p[2]->x, p[2]->y, p[0]->x, p[0]->y);
-    }
-    if(lados == 4)
-    {
-        line(p[0]->x, p[0]->y, p[1]->x, p[1]->y);
-        line(p[1]->x, p[1]->y, p[2]->x, p[2]->y);
-        line(p[2]->x, p[2]->y, p[3]->x, p[3]->y);
-        line(p[3]->x, p[3]->y, p[0]->x, p[0]->y);
-    }
-    if(lados == 5)
-    {
 
-    }
-    if(lados == 6)
-    {
+        if(ativada)
+        {
+            color(0, 0, 0);
+            circleFill(px, py, 2, 30);
+        }
 
+        
     }
-    if(lados == 7)
+    if(tipo == 3)
     {
+        if(ativada)
+        {
+            color(0, 0, 0);
+            for(int i = 0; i < 4; i++)
+            {
+                circleFill(p[i]->x, p[i]->y, 2, 30);
+            }
+        }
 
-    }
-    if(lados == 8)
-    {
-
+        if(preenchida)
+        {
+            //color(Rp, Gp, Bp);
+            //rectFill(p[0]->x, p[1]->y, p[2]->x, p[3]->y);
+            preenche();
+        }
+        else{
+            line(p[0]->x, p[0]->y, p[1]->x, p[1]->y);
+            line(p[1]->x, p[1]->y, p[2]->x, p[2]->y);
+            line(p[2]->x, p[2]->y, p[3]->x, p[3]->y);
+            line(p[3]->x, p[3]->y, p[0]->x, p[0]->y);
+        }
     }
 }
 
@@ -254,20 +232,17 @@ int Figura::menorY(int l)
 
 int Figura::colisao(int mX, int mY)
 {
-    if(mX >= menorX(lados) && mX <= maiorX(lados) && mY >= menorY(lados) && mY <= maiorY(lados)){
-        return 1;
+    if(tipo == 1)
+    {
+        if(mX >= menorX(pontos) && mX <= maiorX(pontos) && mY >= menorY(pontos) && mY <= maiorY(pontos)){
+            return 1;
+        }
     }
-
-
-    if(lados == 2)
+    if(tipo == 3)
     {
 
     }
-    if(lados == 3)
-    {
-
-    }
-    if(lados == 4)
+    if(tipo == 4)
     {
 
     }

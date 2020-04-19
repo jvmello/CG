@@ -14,7 +14,7 @@ Botao::Botao(int x1, int y1, int x2, int y2, char* t)
 	ativado = 0;
 }
 
-void Botao::draw()
+void Botao::desenha()
 {
 	if(ativado) color(1, 1, 1);
 	else color(0.8, 0.8, 0.8);

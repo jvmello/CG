@@ -94,7 +94,7 @@
 1426372440 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\include\gl\freeglut_ext.h
 	<stdarg.h>
 
-1587250936 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\main.cpp
+1587265314 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<math.h>
@@ -118,42 +118,49 @@
 	"Bmp.h"
 	<string.h>
 
-1586996955 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\botao.h
+1587262902 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\botao.h
 	"ponto.h"
 
-1586998884 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\botao.cpp
+1587262895 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\botao.cpp
 	"botao.h"
 	"gl_canvas2d.h"
 
 1585698378 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\slider.h
 
-1586025050 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\checkbox.h
+1587262915 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\checkbox.h
 
-1586025046 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\checkbox.cpp
+1587262908 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\checkbox.cpp
 	"checkbox.h"
 	"gl_canvas2d.h"
 
-1586542219 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\uteis.h
+1587265915 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\uteis.h
+	<iostream>
+	<fstream>
+	<sstream>
+	<cstdlib>
+	<vector>
+	"figura.h"
 
-1586542229 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\uteis.cpp
+1587264902 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\uteis.cpp
+	"uteis.h"
 
-1586545753 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\painel.cpp
+1587262936 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\painel.cpp
 	"painel.h"
 	"gl_canvas2d.h"
 
-1586541775 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\painel.h
+1587262942 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\painel.h
 
-1586628224 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\cor.cpp
+1587262921 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\cor.cpp
 	"cor.h"
 	"gl_canvas2d.h"
 
-1586567446 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\cor.h
+1587262927 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\cor.h
 
-1587250156 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\figura.cpp
+1587264112 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\figura.cpp
 	"figura.h"
 	"gl_canvas2d.h"
 
-1587250037 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\figura.h
+1587265096 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\figura.h
 	<math.h>
 	"ponto.h"
 

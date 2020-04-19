@@ -35,7 +35,7 @@ int Checkbox::gety2(void)
 	return y2;
 }
 
-void Checkbox::draw()
+void Checkbox::desenha()
 {
 	color(0, 0, 0);
 	if(ativado)

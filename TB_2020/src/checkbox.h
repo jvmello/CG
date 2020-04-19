@@ -12,6 +12,6 @@ class Checkbox
 	    int    getx2(void);
 	    int    gety1(void);
 	    int    gety2(void);
-	    void   draw();
+	    void   desenha();
 	    int    colisao(int, int);
 };

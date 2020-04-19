@@ -2,6 +2,10 @@
 /*
     
 */
+
+#ifndef __FIGURA__H__
+#define __FIGURA__H__
+
 #include <math.h>
 #include "ponto.h"
 
@@ -11,11 +15,13 @@ class Figura
         Ponto *p[8];
         float R, G, B;
         float Rp, Gp, Bp;
+        int tamanho;
         int px, py;
         int ativada;
         int preenchida;
-        int lados;
-        Figura(int, int, float, float, float, int);
+        int tipo, pontos;
+        int rotacao;
+        Figura(int, int, float, float, float, int, int);
         int maiorX(int);
         int maiorY(int);
         int menorX(int);
@@ -25,6 +31,9 @@ class Figura
         float  getR(void);
         float  getG(void);
         float  getB(void);
-        void   draw();
+        void preenche();
+        void   desenha();
         int    colisao(int, int);
 };
+
+#endif

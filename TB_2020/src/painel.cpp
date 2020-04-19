@@ -34,7 +34,7 @@ int Painel::gety2(void)
 	return y2;
 }
 
-void Painel::draw()
+void Painel::desenha()
 {
 	color(0, 0, 0);
 	rect(x1, y1, x2, y2);

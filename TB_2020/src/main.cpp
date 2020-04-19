@@ -20,7 +20,7 @@ using namespace std;
 #include "cor.h"
 #include "figura.h"
 
-Botao *b2, *b3, *b4, *b5, *b6, *b7, *b8;
+Botao *b1, *b2, *b3;
 Botao *bdeletar, *brotant, *brothor, *bsalvar, *bcarregar, *bselecionar, *bpreencher, *binserir;
 Painel *p1, *p2;
 Cor *c1, *c2, *c3, *c4, *c5, *c6, *c7, *c8;
@@ -31,22 +31,15 @@ int op = 5;
 
 vector<Figura*> figuras;
 
-//Rotacionar -> mudar as coordenadas de cada parte
 //Fazer um preenchimento pika
-//Fazer o negócio pra diminuir talvez
-//Ver sobre arrastar mouse
 
 void desativa_tudo(char* tipo)
 {
     if(tipo == "Menu")
     {
+        b1->ativado = 0;
         b2->ativado = 0;
         b3->ativado = 0;
-        b4->ativado = 0;
-        b5->ativado = 0;
-        b6->ativado = 0;
-        b7->ativado = 0;
-        b8->ativado = 0;
     }
     if(tipo == "Cor")
     {
@@ -68,7 +61,7 @@ void desativa_tudo(char* tipo)
     }
     if(tipo == "Figura")
     {
-        for(size_t i = 0; i < figuras.size(); ++i)
+        for(int i = 0; i < figuras.size(); ++i)
         {
             figuras[i]->ativada = 0;
         }
@@ -88,38 +81,29 @@ void init()
     p1 = new Painel(10, 10, 840, 590);
     p2 = new Painel(860, 10, 1190, 590);
 
-    b2 = new Botao(865, 520, 1185, 540, "Linha");
-    b3 = new Botao(865, 495, 1020, 515, "3 lados");
-    b4 = new Botao(1030, 495, 1185, 515, "4 lados");
-    b5 = new Botao(865, 470, 1020, 490, "5 lados");
-    b6 = new Botao(1030, 470, 1185, 490, "6 lados");
-    b7 = new Botao(865, 445, 1020, 465, "7 lados");
-    b8 = new Botao(1030, 445, 1185, 465, "8 lados");
+    b1 = new Botao(865, 530, 1185, 550, "Linha");
+    b2 = new Botao(865, 505, 1185, 525, "Circulo");
+    b3 = new Botao(865, 480, 1185, 500, "Quadrado");
 
-    c1 = new Cor(865, 360, 942, 390, 1, 0, 0);
-    c2 = new Cor(946, 360, 1023, 390, 0, 1, 0);
-    c3 = new Cor(1027, 360, 1104, 390, 0, 0, 1);
-    c4 = new Cor(1108, 360, 1185, 390, 1, 0, 1);
-    c5 = new Cor(865, 325, 942, 355, 1, 1, 0);
-    c6 = new Cor(946, 325, 1023, 355, 0, 1, 1);
-    c7 = new Cor(1027, 325, 1104, 355, 1, 1, 1);
-    c8 = new Cor(1108, 325, 1185, 355, 0, 0, 0);
+    c1 = new Cor(865, 380, 942, 410, 1, 0, 0);
+    c2 = new Cor(946, 380, 1023, 410, 0, 1, 0);
+    c3 = new Cor(1027, 380, 1104, 410, 0, 0, 1);
+    c4 = new Cor(1108, 380, 1185, 410, 1, 0, 1);
+    c5 = new Cor(865, 345, 942, 375, 1, 1, 0);
+    c6 = new Cor(946, 345, 1023, 375, 0, 1, 1);
+    c7 = new Cor(1027, 345, 1104, 375, 1, 1, 1);
+    c8 = new Cor(1108, 345, 1185, 375, 0, 0, 0);
 
-    brotant = new Botao(865, 260, 1020, 280, "-");
-    brothor = new Botao(1030, 260, 1185, 280, "+");
+    brotant = new Botao(865, 260, 1020, 280, "<-");
+    brothor = new Botao(1030, 260, 1185, 280, "->");
 
-    bdeletar = new Botao(865, 200, 1020, 240, "Deletar");
-    bselecionar = new Botao(1030, 200, 1185, 240, "Selecionar");
-    bpreencher = new Botao(865, 160, 1020, 200, "Preencher");
-    binserir = new Botao(1030, 160, 1185, 200, "Inserir");
+    bdeletar = new Botao(865, 150, 1020, 190, "Deletar");
+    bselecionar = new Botao(1030, 150, 1185, 190, "Selecionar");
+    bpreencher = new Botao(865, 110, 1020, 150, "Preencher");
+    binserir = new Botao(1030, 110, 1185, 150, "Inserir");
 
-    bsalvar = new Botao(865, 120, 1185, 140, "Salvar arquivo");
-    bcarregar = new Botao(865, 100, 1185, 120, "Carregar arquivo");
-
-    Figura *ff = new Figura(200, 200, 0, 0, 0, 2);
-    ff->ativada = 1;
-    figuras.push_back(ff);
-
+    bsalvar = new Botao(865, 20, 1020, 40, "Salvar");
+    bcarregar = new Botao(1030, 20, 1185, 40, "Carregar");
 }
 
 //Função a ser chamada na render para organizar o código, basicamente desenha cada elemento
@@ -128,49 +112,57 @@ void desenha()
     color(0.9, 0.9, 0.9);
     rectFill(0, 0, 1210, 600);
 
-    p1->draw();
-    p2->draw();
+    p1->desenha();
+    p2->desenha();
 
     color(0, 0, 0);
     text(985, 570, "Figuras:");
 
-    b2->draw();
-    b3->draw();
-    b4->draw();
-    b5->draw();
-    b6->draw();
-    b7->draw();
-    b8->draw();
+    b1->desenha();
+    b2->desenha();
+    b3->desenha();
 
     color(0, 0, 0);
-    text(985, 420, "Cores:");
+    line(860, 460, 1190, 460);
 
-    c1->draw();
-    c2->draw();
-    c3->draw();
-    c4->draw();
-    c5->draw();
-    c6->draw();
-    c7->draw();
-    c8->draw();
+    color(0, 0, 0);
+    text(1000, 430, "Cores:");
 
-    text(985, 305, "Rotacionar:");
-    brotant->draw();
-    brothor->draw();
+    c1->desenha();
+    c2->desenha();
+    c3->desenha();
+    c4->desenha();
+    c5->desenha();
+    c6->desenha();
+    c7->desenha();
+    c8->desenha();
 
-    //text(985, 220, "Funcoes adicionais:");
-    bdeletar->draw();
-    bselecionar->draw();
-    bpreencher->draw();
-    binserir->draw();
+    color(0, 0, 0);
+    line(860, 325, 1190, 325);
 
-    //text(985, 180, "Arquivo:");
-    bsalvar->draw();
-    bcarregar->draw();
+    text(970, 295, "Rotacionar:");
+    brotant->desenha();
+    brothor->desenha();
 
-    for(size_t i = 0; i < figuras.size(); ++i)
+    color(0, 0, 0);
+    line(860, 240, 1190, 240);
+
+    text(925, 210, "Funcoes adicionais:");
+    bdeletar->desenha();
+    bselecionar->desenha();
+    bpreencher->desenha();
+    binserir->desenha();
+
+    color(0, 0, 0);
+    line(860, 90, 1190, 90);
+
+    text(985, 60, "Arquivo:");
+    bsalvar->desenha();
+    bcarregar->desenha();
+
+    for(int i = 0; i < figuras.size(); ++i)
     {
-        figuras[i]->draw();
+        figuras[i]->desenha();
     }
 }
 
@@ -197,7 +189,134 @@ void render()
 //funcao chamada toda vez que uma tecla for pressionada.
 void keyboard(int key)
 {
-    //printf("\nTecla: %d" , key);
+    printf("\nTecla: %d" , key);
+
+    if(key == 119) //W
+    {
+    	for(int i = 0; i < figuras.size(); i++)
+    	{
+    		if(figuras[i]->ativada)
+    		{
+				int novo_y = figuras[i]->py += 5;
+    			Figura* f = new Figura(figuras[i]->px, novo_y, figuras[i]->R, figuras[i]->G, figuras[i]->B, figuras[i]->tipo, figuras[i]->tamanho);
+    			figuras.erase(figuras.begin()+i);
+    			f->ativada = 1;
+    			figuras.push_back(f);
+    		}
+    	}
+    }
+    if(key == 97) //A
+    {
+    	for(int i = 0; i < figuras.size(); i++)
+    	{
+    		if(figuras[i]->ativada)
+    		{
+				int novo_x = figuras[i]->px -= 5;
+	    		Figura* f = new Figura(novo_x, figuras[i]->py, figuras[i]->R, figuras[i]->G, figuras[i]->B, figuras[i]->tipo, figuras[i]->tamanho);
+	    		figuras.erase(figuras.begin()+i);
+	    		f->ativada = 1;
+	    		figuras.push_back(f);
+	    	}
+    	}
+    }
+    if(key == 115) //S
+    {
+    	for(int i = 0; i < figuras.size(); i++)
+    	{
+    		if(figuras[i]->ativada)
+    		{
+				int novo_y = figuras[i]->py -= 5;
+    			Figura* f = new Figura(figuras[i]->px, novo_y, figuras[i]->R, figuras[i]->G, figuras[i]->B, figuras[i]->tipo, figuras[i]->tamanho);
+    			figuras.erase(figuras.begin()+i);
+    			f->ativada = 1;
+    			figuras.push_back(f);    			
+    		}
+    	}
+    }
+    if(key == 100) //D
+    {
+    	for(int i = 0; i < figuras.size(); i++)
+    	{
+    		if(figuras[i]->ativada)
+    		{
+	    		int novo_x = figuras[i]->px += 5;
+	    		Figura* f = new Figura(novo_x, figuras[i]->py, figuras[i]->R, figuras[i]->G, figuras[i]->B, figuras[i]->tipo, figuras[i]->tamanho);
+	    		figuras.erase(figuras.begin()+i);
+	    		f->ativada = 1;
+	    		figuras.push_back(f);    			
+    		}
+    	}
+    }
+
+    if(key == 113) //Q
+    {
+    	for(int i = 0; i < figuras.size(); i++)
+    	{
+    		if(figuras[i]->ativada) figuras[i]->rotaciona_anti_horario();
+    	}
+    }
+    if(key == 101) //E
+    {
+    	for(int i = 0; i < figuras.size(); i++)
+    	{
+    		if(figuras[i]->ativada) figuras[i]->rotaciona_horario();
+    	}
+    }
+
+    if(key == 122) //Z
+    {
+
+    	for(int i = 0; i < figuras.size(); i++)
+    	{
+    		if(figuras[i]->ativada)
+    		{
+    			int novo_tamanho = figuras[i]->tamanho -= 5;
+    			Figura* f = new Figura(figuras[i]->px, figuras[i]->py, figuras[i]->R, figuras[i]->G, figuras[i]->B, figuras[i]->tipo, novo_tamanho);
+    			figuras.erase(figuras.begin()+i);
+    			f->ativada = 1;
+    			figuras.push_back(f);
+    		}
+    	}
+    }
+    if(key == 99) //C
+    {
+    	for(int i = 0; i < figuras.size(); i++)
+    	{
+    		if(figuras[i]->ativada)
+    		{
+    			int novo_tamanho = figuras[i]->tamanho += 5;
+    			Figura* f = new Figura(figuras[i]->px, figuras[i]->py, figuras[i]->R, figuras[i]->G, figuras[i]->B, figuras[i]->tipo, novo_tamanho);
+    			figuras.erase(figuras.begin()+i);
+    			f->ativada = 1;
+    			figuras.push_back(f);
+    		}
+    	}
+    }
+
+    if(key == 112) //P
+    {
+    	for(int i = 0; i < figuras.size(); ++i)
+        {
+            if(figuras[i]->ativada)
+			{
+				Figura* f = new Figura(figuras[i]->px, figuras[i]->py, figuras[i]->R, figuras[i]->G, figuras[i]->B, figuras[i]->tipo, figuras[i]->tamanho);
+				f->ativada = 1;
+				figuras.erase(figuras.begin()+i);
+				figuras.push_back(f);
+			}
+        }
+    }
+
+    if(key == 127) //DEL
+    {
+    	for(int i = 0; i < figuras.size(); ++i)
+        {
+            if(figuras[i]->ativada)
+			{
+				figuras.erase(figuras.begin()+i);
+			}
+        }
+    }
 }
 
 //funcao chamada toda vez que uma tecla for liberada
@@ -218,6 +337,11 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
     {
         Cor *cor = getCor();
 
+        if(b1->colisao(mouseX, mouseY))
+        {
+            desativa_tudo("Menu");
+            b1->ativado = 1;
+        }
         if(b2->colisao(mouseX, mouseY))
         {
             desativa_tudo("Menu");
@@ -227,31 +351,6 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
         {
             desativa_tudo("Menu");
             b3->ativado = 1;
-        }
-        if(b4->colisao(mouseX, mouseY))
-        {
-            desativa_tudo("Menu");
-            b4->ativado = 1;
-        }
-        if(b5->colisao(mouseX, mouseY))
-        {
-            desativa_tudo("Menu");
-            b5->ativado = 1;
-        }
-        if(b6->colisao(mouseX, mouseY))
-        {
-            desativa_tudo("Menu");
-            b6->ativado = 1;
-        }
-        if(b7->colisao(mouseX, mouseY))
-        {
-            desativa_tudo("Menu");
-            b7->ativado = 1;
-        }
-        if(b8->colisao(mouseX, mouseY))
-        {
-            desativa_tudo("Menu");
-            b8->ativado = 1;
         }
 
         if(bdeletar->colisao(mouseX, mouseY))
@@ -322,25 +421,35 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
 
         if(brotant->colisao(mouseX, mouseY))
         {
-            for(size_t i = 0; i < figuras.size(); ++i)
+            for(int i = 0; i < figuras.size(); ++i)
             {
             	if(figuras[i]->ativada) figuras[i]->rotaciona_anti_horario();
             }
         }
         if(brothor->colisao(mouseX, mouseY))
         {
-            for(size_t i = 0; i < figuras.size(); ++i)
+            for(int i = 0; i < figuras.size(); ++i)
             {
             	if(figuras[i]->ativada) figuras[i]->rotaciona_horario();
             }
         }
+
+        if(bsalvar->colisao(mouseX, mouseY))
+        {
+       		salva_arquivo(figuras);
+        }
+		if(bcarregar->colisao(mouseX, mouseY))
+        {
+       		figuras = carrega_arquivo();
+        }
+
 
         if(p1->colisao(mouseX, mouseY))
         {
             if(op == 0) //selecionar
             {
                 desativa_tudo("Figura");
-                for(size_t i = 0; i < figuras.size(); ++i)
+                for(int i = 0; i < figuras.size(); ++i)
                 {
                     if(figuras[i]->colisao(mouseX, mouseY))
                     {
@@ -351,20 +460,16 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
             else if(op == 1) //inserir
             {
                 int l = 0;
+                if(b1->ativado) l = 1;
                 if(b2->ativado) l = 2;
                 if(b3->ativado) l = 3;
-                if(b4->ativado) l = 4;
-                if(b5->ativado) l = 5;
-                if(b6->ativado) l = 6;
-                if(b7->ativado) l = 7;
-                if(b8->ativado) l = 8;
 
-                Figura *f = new Figura(mouseX, mouseY, cor->R, cor->G, cor->B, l);
+                Figura *f = new Figura(mouseX, mouseY, cor->R, cor->G, cor->B, l, 50);
                 figuras.push_back(f);
             }
             else if(op == 2) //deletar
             {
-                for(size_t i = 0; i < figuras.size(); ++i)
+                for(int i = 0; i < figuras.size(); ++i)
                 {
                     if(figuras[i]->colisao(mouseX, mouseY))
                     {
@@ -374,7 +479,7 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
             }
             else if(op == 3) //preencher
             {
-                for(size_t i = 0; i < figuras.size(); ++i)
+                for(int i = 0; i < figuras.size(); ++i)
                 {
                     if(figuras[i]->colisao(mouseX, mouseY))
                     {

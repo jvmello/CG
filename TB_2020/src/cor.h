@@ -17,6 +17,6 @@ class Cor
         float  getR(void);
         float  getG(void);
         float  getB(void);
-        void   draw();
+        void   desenha();
         int    colisao(int, int);
 };

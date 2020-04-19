@@ -53,7 +53,7 @@ float Cor::getB(void)
 	return B;
 }
 
-void Cor::draw()
+void Cor::desenha()
 {
 	color(R, G, B);
 	rectFill(x1, y1, x2, y2);
