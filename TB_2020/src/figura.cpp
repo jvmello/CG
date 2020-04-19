@@ -65,7 +65,13 @@ void Figura::preenche()
     color(0, 0, 0);
     if(tipo == 2)
     {
-        
+        for(int x = px; x < px+tamanho*3; x++)
+        {
+            for(int y = py; y < py+tamanho*3; y++)   
+            {
+                if(colisao(x, y)) point(x, y);
+            }
+        }
     }
     if(tipo == 3)
     {
@@ -144,17 +150,18 @@ void Figura::desenha()
     }
     if(tipo == 2)
     {
-        line(p[0]->x, p[0]->y, p[1]->x, p[1]->y);
-        line(p[1]->x, p[1]->y, p[2]->x, p[2]->y);
-        line(p[2]->x, p[2]->y, p[0]->x, p[0]->y);
+        circle(px, py, tamanho, 40);
 
         if(ativada)
         {
             color(0, 0, 0);
             circleFill(px, py, 2, 30);
         }
-
-        
+        if(preenchida)
+        {
+            //circleFill(px, py, tamanho, 40);
+            preenche();
+        }
     }
     if(tipo == 3)
     {
@@ -222,7 +229,7 @@ int Figura::menorY(int l)
 {
     int m = 20000;
 
-    for(size_t i = 0; i < l; i++)
+    for(int i = 0; i < l; i++)
     {
         if(p[i]->y < m && p[i]->y != 0) m = p[i]->y;
     }
@@ -238,11 +245,15 @@ int Figura::colisao(int mX, int mY)
             return 1;
         }
     }
-    if(tipo == 3)
+    if(tipo == 2)
     {
+        float dx = abs(mX-px);
+        float dy = abs(mY-py);
+        float R = tamanho;
 
+        if(pow(dx, 2) + pow(dy, 2) <= pow(R, 2)) return 1;
     }
-    if(tipo == 4)
+    if(tipo == 3)
     {
 
     }

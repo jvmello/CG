@@ -141,7 +141,7 @@
 	<vector>
 	"figura.h"
 
-1587264902 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\uteis.cpp
+1587266126 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\uteis.cpp
 	"uteis.h"
 
 1587262936 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\painel.cpp
@@ -156,7 +156,7 @@
 
 1587262927 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\cor.h
 
-1587264112 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\figura.cpp
+1587266441 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\figura.cpp
 	"figura.h"
 	"gl_canvas2d.h"
 
