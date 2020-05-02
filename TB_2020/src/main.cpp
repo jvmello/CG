@@ -1,4 +1,14 @@
 //João Vitor Machado de Mello, matrícula 201511255, jvmello@inf.ufsm.br
+/*
+	- Para utilizar, é preciso escolher um tipo de figura e um tipo de ação, também é possível escolher um tipo de cor (se não escolher, vai ser preta a imagem)
+	- É possível aumentar/diminuir o tamanho, modificar a posição, preencher os círculos e rotacionar as linhas/quadrados (sentido horário e anti-horário)
+	- Comandos de teclado
+		- WASD para movimentar uma imagem (precisa estar selecionada)
+		- Q e E para rotacionar a imagem em sentido anti-horário ou horário
+		- Z e C para diminuir/aumentar o tamanho da imagem
+		- Delete para deletar uma imagem selecionada
+		- P para sobrepor uma figura a outra
+*/
 
 #include <GL/glut.h>
 #include <GL/freeglut_ext.h>
@@ -14,7 +24,6 @@ using namespace std;
 
 #include "ponto.h"
 #include "botao.h"
-#include "checkbox.h"
 #include "painel.h"
 #include "uteis.h"
 #include "cor.h"
@@ -22,17 +31,16 @@ using namespace std;
 
 Botao *b1, *b2, *b3;
 Botao *bdeletar, *brotant, *brothor, *bsalvar, *bcarregar, *bselecionar, *bpreencher, *binserir;
-Painel *p1, *p2;
-Cor *c1, *c2, *c3, *c4, *c5, *c6, *c7, *c8;
+Painel *p1, *p2; //paineis de desenho e menu
+Cor *c1, *c2, *c3, *c4, *c5, *c6, *c7, *c8; //cores selecionaveis
 
 int screenWidth = 1200, screenHeight = 600;
 int mouseX, mouseY;
 int op = 5;
 
-vector<Figura*> figuras;
+vector<Figura*> figuras; //aqui ficarão as figuras mostradas
 
-//Fazer um preenchimento pika
-
+//função para desabilitar algumas funções (auxilia no controle da interface)
 void desativa_tudo(char* tipo)
 {
     if(tipo == "Menu")
@@ -166,6 +174,7 @@ void desenha()
     }
 }
 
+//Pega a cor ativada
 Cor* getCor()
 {
     if(c1->ativado) return c1;
@@ -185,12 +194,9 @@ void render()
     desenha();
 }
 
-//Funções de teclado não usadas nesse trabalho
 //funcao chamada toda vez que uma tecla for pressionada.
 void keyboard(int key)
 {
-    printf("\nTecla: %d" , key);
-
     if(key == 119) //W
     {
     	for(int i = 0; i < figuras.size(); i++)
@@ -198,7 +204,7 @@ void keyboard(int key)
     		if(figuras[i]->ativada)
     		{
 				int novo_y = figuras[i]->py += 5;
-    			Figura* f = new Figura(figuras[i]->px, novo_y, figuras[i]->R, figuras[i]->G, figuras[i]->B, figuras[i]->tipo, figuras[i]->tamanho);
+    			Figura* f = new Figura(figuras[i]->px, novo_y, figuras[i]->R, figuras[i]->G, figuras[i]->B, figuras[i]->tipo, figuras[i]->tamanho, figuras[i]->rotacao);
     			figuras.erase(figuras.begin()+i);
     			f->ativada = 1;
     			figuras.push_back(f);
@@ -212,7 +218,7 @@ void keyboard(int key)
     		if(figuras[i]->ativada)
     		{
 				int novo_x = figuras[i]->px -= 5;
-	    		Figura* f = new Figura(novo_x, figuras[i]->py, figuras[i]->R, figuras[i]->G, figuras[i]->B, figuras[i]->tipo, figuras[i]->tamanho);
+	    		Figura* f = new Figura(novo_x, figuras[i]->py, figuras[i]->R, figuras[i]->G, figuras[i]->B, figuras[i]->tipo, figuras[i]->tamanho, figuras[i]->rotacao);
 	    		figuras.erase(figuras.begin()+i);
 	    		f->ativada = 1;
 	    		figuras.push_back(f);
@@ -226,10 +232,10 @@ void keyboard(int key)
     		if(figuras[i]->ativada)
     		{
 				int novo_y = figuras[i]->py -= 5;
-    			Figura* f = new Figura(figuras[i]->px, novo_y, figuras[i]->R, figuras[i]->G, figuras[i]->B, figuras[i]->tipo, figuras[i]->tamanho);
+    			Figura* f = new Figura(figuras[i]->px, novo_y, figuras[i]->R, figuras[i]->G, figuras[i]->B, figuras[i]->tipo, figuras[i]->tamanho, figuras[i]->rotacao);
     			figuras.erase(figuras.begin()+i);
     			f->ativada = 1;
-    			figuras.push_back(f);    			
+    			figuras.push_back(f);
     		}
     	}
     }
@@ -240,10 +246,10 @@ void keyboard(int key)
     		if(figuras[i]->ativada)
     		{
 	    		int novo_x = figuras[i]->px += 5;
-	    		Figura* f = new Figura(novo_x, figuras[i]->py, figuras[i]->R, figuras[i]->G, figuras[i]->B, figuras[i]->tipo, figuras[i]->tamanho);
+	    		Figura* f = new Figura(novo_x, figuras[i]->py, figuras[i]->R, figuras[i]->G, figuras[i]->B, figuras[i]->tipo, figuras[i]->tamanho, figuras[i]->rotacao);
 	    		figuras.erase(figuras.begin()+i);
 	    		f->ativada = 1;
-	    		figuras.push_back(f);    			
+	    		figuras.push_back(f);
     		}
     	}
     }
@@ -252,26 +258,25 @@ void keyboard(int key)
     {
     	for(int i = 0; i < figuras.size(); i++)
     	{
-    		if(figuras[i]->ativada) figuras[i]->rotaciona_anti_horario();
+    		if(figuras[i]->ativada) figuras[i]->rotaciona_anti_horario(30);
     	}
     }
     if(key == 101) //E
     {
     	for(int i = 0; i < figuras.size(); i++)
     	{
-    		if(figuras[i]->ativada) figuras[i]->rotaciona_horario();
+    		if(figuras[i]->ativada) figuras[i]->rotaciona_horario(30);
     	}
     }
 
     if(key == 122) //Z
     {
-
     	for(int i = 0; i < figuras.size(); i++)
     	{
     		if(figuras[i]->ativada)
     		{
     			int novo_tamanho = figuras[i]->tamanho -= 5;
-    			Figura* f = new Figura(figuras[i]->px, figuras[i]->py, figuras[i]->R, figuras[i]->G, figuras[i]->B, figuras[i]->tipo, novo_tamanho);
+    			Figura* f = new Figura(figuras[i]->px, figuras[i]->py, figuras[i]->R, figuras[i]->G, figuras[i]->B, figuras[i]->tipo, novo_tamanho, figuras[i]->rotacao);
     			figuras.erase(figuras.begin()+i);
     			f->ativada = 1;
     			figuras.push_back(f);
@@ -285,7 +290,7 @@ void keyboard(int key)
     		if(figuras[i]->ativada)
     		{
     			int novo_tamanho = figuras[i]->tamanho += 5;
-    			Figura* f = new Figura(figuras[i]->px, figuras[i]->py, figuras[i]->R, figuras[i]->G, figuras[i]->B, figuras[i]->tipo, novo_tamanho);
+    			Figura* f = new Figura(figuras[i]->px, figuras[i]->py, figuras[i]->R, figuras[i]->G, figuras[i]->B, figuras[i]->tipo, novo_tamanho, figuras[i]->rotacao);
     			figuras.erase(figuras.begin()+i);
     			f->ativada = 1;
     			figuras.push_back(f);
@@ -299,7 +304,7 @@ void keyboard(int key)
         {
             if(figuras[i]->ativada)
 			{
-				Figura* f = new Figura(figuras[i]->px, figuras[i]->py, figuras[i]->R, figuras[i]->G, figuras[i]->B, figuras[i]->tipo, figuras[i]->tamanho);
+				Figura* f = new Figura(figuras[i]->px, figuras[i]->py, figuras[i]->R, figuras[i]->G, figuras[i]->B, figuras[i]->tipo, figuras[i]->tamanho, figuras[i]->rotacao);
 				f->ativada = 1;
 				figuras.erase(figuras.begin()+i);
 				figuras.push_back(f);
@@ -307,7 +312,7 @@ void keyboard(int key)
         }
     }
 
-    if(key == 127) //DEL
+    if(key == 127) //DELETE
     {
     	for(int i = 0; i < figuras.size(); ++i)
         {
@@ -337,6 +342,7 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
     {
         Cor *cor = getCor();
 
+        //Clicando em qualquer uma das figuras
         if(b1->colisao(mouseX, mouseY))
         {
             desativa_tudo("Menu");
@@ -353,6 +359,7 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
             b3->ativado = 1;
         }
 
+        //Clicando em qualquer um dos botões de funções
         if(bdeletar->colisao(mouseX, mouseY))
         {
             desativa_tudo("Adicional");
@@ -378,6 +385,7 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
             op = 1;
         }
 
+        //Clicando em qualquer uma das cores
         if(c1->colisao(mouseX, mouseY))
         {
             desativa_tudo("Cor");
@@ -419,21 +427,23 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
             c8->ativado = 1;
         }
 
+        //Botões de rotação
         if(brotant->colisao(mouseX, mouseY))
         {
             for(int i = 0; i < figuras.size(); ++i)
             {
-            	if(figuras[i]->ativada) figuras[i]->rotaciona_anti_horario();
+            	if(figuras[i]->ativada) figuras[i]->rotaciona_anti_horario(30);
             }
         }
         if(brothor->colisao(mouseX, mouseY))
         {
             for(int i = 0; i < figuras.size(); ++i)
             {
-            	if(figuras[i]->ativada) figuras[i]->rotaciona_horario();
+            	if(figuras[i]->ativada) figuras[i]->rotaciona_horario(30);
             }
         }
 
+		//Botões do arquivo
         if(bsalvar->colisao(mouseX, mouseY))
         {
        		salva_arquivo(figuras);
@@ -443,7 +453,7 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
        		figuras = carrega_arquivo();
         }
 
-
+        //Aplica as funções no painel
         if(p1->colisao(mouseX, mouseY))
         {
             if(op == 0) //selecionar
@@ -459,12 +469,12 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
             }
             else if(op == 1) //inserir
             {
-                int l = 0;
-                if(b1->ativado) l = 1;
-                if(b2->ativado) l = 2;
-                if(b3->ativado) l = 3;
+                int t = 0;
+                if(b1->ativado) t = 1;
+                if(b2->ativado) t = 2;
+                if(b3->ativado) t = 3;
 
-                Figura *f = new Figura(mouseX, mouseY, cor->R, cor->G, cor->B, l, 50);
+                Figura *f = new Figura(mouseX, mouseY, cor->R, cor->G, cor->B, t, 50, 0);
                 figuras.push_back(f);
             }
             else if(op == 2) //deletar
@@ -483,11 +493,11 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
                 {
                     if(figuras[i]->colisao(mouseX, mouseY))
                     {
-                        //figuras[i]->Rp = cor->R;
-                        //figuras[i]->Gp = cor->G;
-                        //figuras[i]->Bp = cor->B;
+                        figuras[i]->Rp = cor->R;
+                        figuras[i]->Gp = cor->G;
+                        figuras[i]->Bp = cor->B;
 
-                        //figuras[i]->preenchida = 1;
+                        figuras[i]->preenchida = 1;
                     }
                 }
             }

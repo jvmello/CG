@@ -1,29 +1,37 @@
+//João Vitor Machado de Mello, matrícula 201511255, jvmello@inf.ufsm.br
+/*
+	Funções adicionais utilizadas para manipulação do arquivo
+*/
+
 #include "uteis.h"
 
+//Carrega
 vector<Figura*> carrega_arquivo()
 {
-	ifstream file("arquivo.txt");
+	ifstream arquivo("arquivo.txt");
 	string str;
 	cout << "\n";
-	if(getline(file, str)) cout << str;
+	if(getline(arquivo, str)) cout << str;
 
 	vector<Figura*> figuras;
 
-	while (getline(file, str))
+	while (getline(arquivo, str))
     {
         istringstream ss(str);
 
         int tipo, px, py, tamanho, rotacao;
         float R, G, B;
 
+        //Pega a string formatada com os atributos de uma figura e adiciona
         ss >> tipo >> px >> py >> tamanho >> rotacao >> R >> G >> B;
-        Figura* f = new Figura(px, py, R, G, B, tipo, tamanho);
+        Figura* f = new Figura(px, py, R, G, B, tipo, tamanho, rotacao);
         figuras.push_back(f);
     }
 
 	return figuras;
 }
 
+//Salva os dados
 void salva_arquivo(vector<Figura*> figuras)
 {
 	ofstream arquivo_saida;
@@ -38,6 +46,7 @@ void salva_arquivo(vector<Figura*> figuras)
    	arquivo_saida << figuras.size() << endl;
 	for (int i = 0; i < figuras.size(); i++)
 	{
+		//String formatada
 		arquivo_saida << figuras[i]->tipo << " " << figuras[i]->px << " " << figuras[i]->py << " " << figuras[i]->tamanho << " " << figuras[i]->rotacao << " " << figuras[i]->R << " " << figuras[i]->G << " " << figuras[i]->B << endl;
 	}
    	arquivo_saida.close();

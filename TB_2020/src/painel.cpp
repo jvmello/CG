@@ -1,6 +1,6 @@
 //João Vitor Machado de Mello, matrícula 201511255, jvmello@inf.ufsm.br
 /*
-    Classes e funções utilizadas em botões usados na tela principal
+    Classes e funções utilizadas em paineis usados na tela principal
 */
 
 #include "painel.h"
@@ -40,7 +40,6 @@ void Painel::desenha()
 	rect(x1, y1, x2, y2);
 	color(0.8, 0.8, 0.8);
 	rectFill(x1+1, y1+1, x2-1, y2-1);
-	
 }
 
 int Painel::colisao(int mX, int mY)

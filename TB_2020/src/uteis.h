@@ -1,5 +1,6 @@
 //João Vitor Machado de Mello, matrícula 201511255, jvmello@inf.ufsm.br
 /*
+	Funções adicionais utilizadas para manipulação do arquivo
 */
 #include <iostream>
 using std::cerr;

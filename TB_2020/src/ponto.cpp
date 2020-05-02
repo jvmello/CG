@@ -1,6 +1,6 @@
 //João Vitor Machado de Mello, matrícula 201511255, jvmello@inf.ufsm.br
 /*
-    Classes e funções utilizadas em botões usados na tela principal
+    Classe e funções utilizadas nos pontos que formam uma figura
 */
 
 #include "ponto.h"
