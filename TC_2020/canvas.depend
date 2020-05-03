@@ -69,7 +69,7 @@
 	"gl_canvas2d.h"
 	<GL/glut.h>
 
-1587081457 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\gl_canvas2d.h
+1588461517 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\gl_canvas2d.h
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
@@ -94,7 +94,7 @@
 1426372440 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\include\gl\freeglut_ext.h
 	<stdarg.h>
 
-1588451489 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\main.cpp
+1588468007 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<math.h>
@@ -107,6 +107,7 @@
 	"painel.h"
 	"uteis.h"
 	"cor.h"
+	"curva.h"
 
 1585520498 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\bmp.h
 	<stdio.h>
@@ -170,4 +171,12 @@
 1587314954 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\circulo.cpp
 
 1587314935 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\linha.cpp
+
+1588468463 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\curva.cpp
+	"curva.h"
+
+1588468330 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\curva.h
+	"gl_canvas2d.h"
+	"ponto.h"
+	<vector>
 

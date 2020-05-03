@@ -17,7 +17,9 @@ class Curva
         int x, y;
         int ativada;
         float R, G, B;
-        Curva(vector<int>, float, float, float);
+        vector<Ponto*> pontos;
+        Curva(vector<Ponto*>, float, float, float);
+        void   desenha_fecho();
         void   desenha();
         int    colisao(int, int);
 };

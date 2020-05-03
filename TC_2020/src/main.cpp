@@ -27,16 +27,20 @@ using namespace std;
 #include "painel.h"
 #include "uteis.h"
 #include "cor.h"
+#include "curva.h"
 
 Botao *b1, *b2, *b3;
 Botao *bdeletar, *brotant, *brothor, *bsalvar, *bcarregar, *bselecionar, *bpreencher, *binserir;
 Painel *p1, *p2; //paineis de desenho e menu
 Cor *c1, *c2, *c3, *c4, *c5, *c6, *c7, *c8; //cores selecionaveis
+Curva *c;
 
 int screenWidth = 1200, screenHeight = 600;
 int mouseX, mouseY;
 int op = 0;
 vector <Ponto*> pontos;
+int curva = 0;
+int arrastando = 0;
 
 //função para desabilitar algumas funções (auxilia no controle da interface)
 void desativa_tudo(char* tipo)
@@ -170,6 +174,8 @@ void desenha()
     {
         pontos[i]->desenha();
     }
+
+    if(curva) c->desenha();
 }
 
 //Pega a cor ativada
@@ -305,23 +311,53 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
                     if(pontos[i]->colisao(mouseX, mouseY))
                     {
                         pontos[i]->ativado = 1;
+                        arrastando = 1;
                     }
                 }
             }
             if(op == 2) //Inserir
             {
-                Ponto *p = new Ponto(mouseX, mouseY, cor->R, cor->G, cor->B);
-                pontos.push_back(p);
+                if(pontos.size() < 4)
+                {
+                    Ponto *p = new Ponto(mouseX, mouseY, cor->R, cor->G, cor->B);
+                    pontos.push_back(p);
+                }
+
+                if(pontos.size() == 4)
+                {
+                    c = new Curva(pontos, 0, 0, 0);
+                    curva = 1;
+                }
             }
             if(op == 3) //Deletar
             {
-                
+
             }
             if(op == 4) //Colorir
             {
-                
+
             }
         }
+    }
+
+    if(state == -2)
+    {
+        if(arrastando)
+        {
+            for(int i = 0; i < pontos.size(); ++i)
+            {
+                if(pontos[i]->ativado)
+                {
+                    pontos[i]->x = mouseX;
+                    pontos[i]->y = mouseY;
+                }
+            }
+        }
+    }
+
+    if(state == 1)
+    {
+        arrastando = 0;
     }
 }
 
