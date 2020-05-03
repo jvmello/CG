@@ -7,6 +7,8 @@
 #include "ponto.h"
 using namespace std;
 #include <vector>
+//#include <Windows.h>
+#include <unistd.h>
 
 #ifndef CURVA_H
 #define CURVA_H
@@ -19,7 +21,9 @@ class Curva
         float R, G, B;
         vector<Ponto*> pontos;
         Curva(vector<Ponto*>, float, float, float);
+        void   desenha_grafo();
         void   desenha_fecho();
+        void desenha_func(float);
         void   desenha();
         int    colisao(int, int);
 };

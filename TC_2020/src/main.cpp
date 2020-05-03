@@ -41,6 +41,7 @@ int op = 0;
 vector <Ponto*> pontos;
 int curva = 0;
 int arrastando = 0;
+float t = 0;
 
 //função para desabilitar algumas funções (auxilia no controle da interface)
 void desativa_tudo(char* tipo)
@@ -174,8 +175,6 @@ void desenha()
     {
         pontos[i]->desenha();
     }
-
-    if(curva) c->desenha();
 }
 
 //Pega a cor ativada
@@ -196,6 +195,17 @@ Cor* getCor()
 void render()
 {
     desenha();
+
+    if(curva){
+        //c->desenha();
+
+        t += 0.01;
+        c->desenha_func(t);
+
+        if(t > 1) t = 0;
+
+        Sleep(10);
+    }
 }
 
 //funcao chamada toda vez que uma tecla for pressionada.
