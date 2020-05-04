@@ -17,13 +17,14 @@ class Curva
 {
    public:
         int x, y;
-        int ativada;
+        int ativada, espessura;
         float R, G, B;
         vector<Ponto*> pontos;
         Curva(vector<Ponto*>, float, float, float);
         void   desenha_grafo();
         void   desenha_fecho();
-        void desenha_func(float);
+        void   desenha_retas(float);
+        void   desenha_func(float);
         void   desenha();
         int    colisao(int, int);
 };

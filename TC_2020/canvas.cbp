@@ -48,6 +48,8 @@
 		<Unit filename="src/botao.h" />
 		<Unit filename="src/cor.cpp" />
 		<Unit filename="src/cor.h" />
+		<Unit filename="src/curva.cpp" />
+		<Unit filename="src/curva.h" />
 		<Unit filename="src/gl_canvas2d.cpp" />
 		<Unit filename="src/gl_canvas2d.h" />
 		<Unit filename="src/main.cpp" />

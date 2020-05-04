@@ -6,7 +6,7 @@
 		- WASD para movimentar uma imagem (precisa estar selecionada)
 		- Q e E para rotacionar a imagem em sentido anti-horário ou horário
 		- Z e C para diminuir/aumentar o tamanho da imagem
-		- Delete para deletar uma imagem selecionada
+		- Delete para resetar uma imagem selecionada
 		- P para sobrepor uma figura a outra
 */
 
@@ -29,8 +29,7 @@ using namespace std;
 #include "cor.h"
 #include "curva.h"
 
-Botao *b1, *b2, *b3;
-Botao *bdeletar, *brotant, *brothor, *bsalvar, *bcarregar, *bselecionar, *bpreencher, *binserir;
+Botao *bresetar, *bespmais, *bespmenos, *bsalvar, *bcarregar, *bselecionar, *bpreencher, *binserir;
 Painel *p1, *p2; //paineis de desenho e menu
 Cor *c1, *c2, *c3, *c4, *c5, *c6, *c7, *c8; //cores selecionaveis
 Curva *c;
@@ -46,12 +45,6 @@ float t = 0;
 //função para desabilitar algumas funções (auxilia no controle da interface)
 void desativa_tudo(char* tipo)
 {
-    if(tipo == "Menu")
-    {
-        b1->ativado = 0;
-        b2->ativado = 0;
-        b3->ativado = 0;
-    }
     if(tipo == "Cor")
     {
         c1->ativado = 0;
@@ -65,7 +58,7 @@ void desativa_tudo(char* tipo)
     }
     if(tipo == "Adicional")
     {
-        bdeletar->ativado = 0;
+        bresetar->ativado = 0;
         bselecionar->ativado = 0;
         bpreencher->ativado = 0;
         binserir->ativado = 0;
@@ -92,10 +85,6 @@ void init()
     p1 = new Painel(10, 10, 840, 590);
     p2 = new Painel(860, 10, 1190, 590);
 
-    b1 = new Botao(865, 530, 1185, 550, "Linha");
-    b2 = new Botao(865, 505, 1185, 525, "Circulo");
-    b3 = new Botao(865, 480, 1185, 500, "Quadrado");
-
     c1 = new Cor(865, 380, 942, 410, 1, 0, 0);
     c2 = new Cor(946, 380, 1023, 410, 0, 1, 0);
     c3 = new Cor(1027, 380, 1104, 410, 0, 0, 1);
@@ -105,10 +94,10 @@ void init()
     c7 = new Cor(1027, 345, 1104, 375, 1, 1, 1);
     c8 = new Cor(1108, 345, 1185, 375, 0, 0, 0);
 
-    brotant = new Botao(865, 260, 1020, 280, "<-");
-    brothor = new Botao(1030, 260, 1185, 280, "->");
+    bespmenos = new Botao(865, 260, 1020, 280, "-");
+    bespmais = new Botao(1030, 260, 1185, 280, "+");
 
-    bdeletar = new Botao(865, 150, 1020, 190, "Deletar");
+    bresetar = new Botao(865, 150, 1020, 190, "Resetar");
     bselecionar = new Botao(1030, 150, 1185, 190, "Selecionar");
     bpreencher = new Botao(865, 110, 1020, 150, "Preencher");
     binserir = new Botao(1030, 110, 1185, 150, "Inserir");
@@ -125,13 +114,6 @@ void desenha()
 
     p1->desenha();
     p2->desenha();
-
-    color(0, 0, 0);
-    text(985, 570, "Figuras:");
-
-    b1->desenha();
-    b2->desenha();
-    b3->desenha();
 
     color(0, 0, 0);
     line(860, 460, 1190, 460);
@@ -151,15 +133,15 @@ void desenha()
     color(0, 0, 0);
     line(860, 325, 1190, 325);
 
-    text(970, 295, "Rotacionar:");
-    brotant->desenha();
-    brothor->desenha();
+    text(970, 295, "Espessura:");
+    bespmais->desenha();
+    bespmenos->desenha();
 
     color(0, 0, 0);
     line(860, 240, 1190, 240);
 
     text(925, 210, "Funcoes adicionais:");
-    bdeletar->desenha();
+    bresetar->desenha();
     bselecionar->desenha();
     bpreencher->desenha();
     binserir->desenha();
@@ -174,6 +156,19 @@ void desenha()
     for(int i = 0; i < pontos.size(); ++i)
     {
         pontos[i]->desenha();
+    }
+
+        if(curva){
+        c->desenha();
+
+        t += 0.005;
+        color(0, 0, 1);
+        c->desenha_func(t);
+        c->desenha_retas(t);
+
+        if(t > 1) t = 0;
+
+        //Sleep(100);
     }
 }
 
@@ -195,17 +190,6 @@ Cor* getCor()
 void render()
 {
     desenha();
-
-    if(curva){
-        //c->desenha();
-
-        t += 0.01;
-        c->desenha_func(t);
-
-        if(t > 1) t = 0;
-
-        Sleep(10);
-    }
 }
 
 //funcao chamada toda vez que uma tecla for pressionada.
@@ -231,30 +215,7 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
     {
         Cor *cor = getCor();
 
-        //Clicando em qualquer uma das figuras
-        if(b1->colisao(mouseX, mouseY))
-        {
-            desativa_tudo("Menu");
-            b1->ativado = 1;
-        }
-        if(b2->colisao(mouseX, mouseY))
-        {
-            desativa_tudo("Menu");
-            b2->ativado = 1;
-        }
-        if(b3->colisao(mouseX, mouseY))
-        {
-            desativa_tudo("Menu");
-            b3->ativado = 1;
-        }
-
         //Clicando em qualquer um dos botões de funções
-        if(bdeletar->colisao(mouseX, mouseY))
-        {
-            desativa_tudo("Adicional");
-            bdeletar->ativado = 1;
-            op = 3;
-        }
         if(bselecionar->colisao(mouseX, mouseY))
         {
             desativa_tudo("Adicional");
@@ -266,6 +227,29 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
             desativa_tudo("Adicional");
             binserir->ativado = 1;
             op = 2;
+        }
+        if(bresetar->colisao(mouseX, mouseY))
+        {
+            desativa_tudo("Adicional");
+            bresetar->ativado = 1;
+            curva = 0;
+            pontos.clear();
+            op = 3;
+        }
+
+        if(bespmais->colisao(mouseX, mouseY))
+        {
+            if(curva)
+            {
+                if(c->espessura < 10) c->espessura++;
+            }
+        }
+        if(bespmenos->colisao(mouseX, mouseY))
+        {
+            if(curva)
+            {
+                if(c->espessura > 1) c->espessura--;
+            }
         }
 
         //Clicando em qualquer uma das cores
@@ -339,9 +323,9 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
                     curva = 1;
                 }
             }
-            if(op == 3) //Deletar
+            if(op == 3) //resetar
             {
-
+                curva = 0;
             }
             if(op == 4) //Colorir
             {
