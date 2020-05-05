@@ -12,13 +12,10 @@ Ponto::Ponto(int x_, int y_)
     ativado = 0;
 }
 
-Ponto::Ponto(int x_, int y_, float R_, float G_, float B_)
+Ponto::Ponto()
 {
-    x = x_;
-    y = y_;
-    R = R_;
-    G = G_;
-    B = B_;
+    x = 0;
+    y = 0;
     ativado = 0;
 }
 
@@ -50,6 +47,6 @@ void Ponto::desenha()
 		color(0, 0, 0);
 		circle(x, y, 6, 20);
 	}
-	color(R, G, B);
+	color(0, 0, 0);
 	circleFill(x, y, 5, 20);
 }

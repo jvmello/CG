@@ -5,12 +5,9 @@
 
 #include "curva.h"
 
-Curva::Curva(vector<Ponto*> p, float R_, float G_, float B_)
+Curva::Curva(vector<Ponto*> p)
 {
     ativada = 0;
-    R = R_;
-    G = G_;
-    B = B_;
     for (int i=0; i<p.size(); i++){
         pontos.push_back(p[i]);
     }
@@ -20,62 +17,66 @@ Curva::Curva(vector<Ponto*> p, float R_, float G_, float B_)
     espessura = 2;
 }
 
-int Curva::colisao(int mX, int mY)
-{
-    return 0;
-}
-
 void Curva::desenha_grafo()
 {
+    color(0.5, 0.5, 0.5);
     for(int i = 0; i < 3; i++)
     {
         line(pontos[i]->x, pontos[i]->y, pontos[i+1]->x, pontos[i+1]->y);
     }
 }
 
-void Curva::desenha_retas(float t)
+void Curva::desenha_reta_r(float t)
 {
-    int p1x, p1y, p2x, p2y, p3x, p3y;
-    int pp1x, pp1y, pp2x, pp2y, pp3x, pp3y;
+    color(0, 0, 1);
 
-    p1x = round((1-t) * pontos[0]->x + t * pontos[1]->x);
-    p1y = round((1-t) * pontos[0]->y + t * pontos[1]->y);
-    p2x = round((1-t) * pontos[1]->x + t * pontos[2]->x);
-    p2y = round((1-t) * pontos[1]->y + t * pontos[2]->y);
-    p3x = round((1-t) * pontos[2]->x + t * pontos[3]->x);
-    p3y = round((1-t) * pontos[2]->y + t * pontos[3]->y);
+    int q1x, q1y, q2x, q2y, q3x, q3y;
+    int r1x, r1y, r2x, r2y;
 
-    pp1x = (1-t)*p1x + t*p2x;
-    pp1y = (1-t)*p1y + t*p2y;
+    q1x = round((1-t) * pontos[0]->x + t * pontos[1]->x);
+    q1y = round((1-t) * pontos[0]->y + t * pontos[1]->y);
+    q2x = round((1-t) * pontos[1]->x + t * pontos[2]->x);
+    q2y = round((1-t) * pontos[1]->y + t * pontos[2]->y);
+    q3x = round((1-t) * pontos[2]->x + t * pontos[3]->x);
+    q3y = round((1-t) * pontos[2]->y + t * pontos[3]->y);
 
-    pp2x = (1-t)*p2x + t*p3x;
-    pp2y = (1-t)*p2y + t*p3y;
+    r1x = (1-t)*q1x + t*q2x;
+    r1y = (1-t)*q1y + t*q2y;
 
-    line(p1x, p1y, p2x, p2y);
-    line(p2x, p2y, p3x, p3y);
+    r2x = (1-t)*q2x + t*q3x;
+    r2y = (1-t)*q2y + t*q3y;
 
-    int x_ = round(pow(1-t, 3) * pontos[0]->x + (3*t * pow((1-t), 2)) * pontos[1]->x + (3 * pow(t, 2) * (1-t)) * pontos[2]->x + pow(t, 3) * pontos[3]->x);
-    int y_ = round(pow(1-t, 3) * pontos[0]->y + (3*t * pow((1-t), 2)) * pontos[1]->y + (3 * pow(t, 2) * (1-t)) * pontos[2]->y + pow(t, 3) * pontos[3]->y);
+    line(r1x, r1y, r2x, r2y);
 
-    color(1, 0, 1);
-    line(pp1x, pp1y, pp2x, pp2y);
-    //line(pp2x, pp2y, pp3x, pp3y);
+    circleFill(r1x, r1y, espessura, 100);
+    circleFill(r2x, r2y, espessura, 100);
+}
 
-    circleFill(p1x, p1y, 3, 100);
-    circleFill(p2x, p2y, 3, 100);
-    circleFill(p3x, p3y, 3, 100);
-    circleFill(pp1x, pp1y, 3, 100);
-    circleFill(pp2x, pp2y, 3, 100);
+void Curva::desenha_reta_q(float t)
+{
+    color(0, 1, 0);
+
+    int q1x, q1y, q2x, q2y, q3x, q3y;
+
+    q1x = round((1-t) * pontos[0]->x + t * pontos[1]->x);
+    q1y = round((1-t) * pontos[0]->y + t * pontos[1]->y);
+    q2x = round((1-t) * pontos[1]->x + t * pontos[2]->x);
+    q2y = round((1-t) * pontos[1]->y + t * pontos[2]->y);
+    q3x = round((1-t) * pontos[2]->x + t * pontos[3]->x);
+    q3y = round((1-t) * pontos[2]->y + t * pontos[3]->y);
+
+    line(q1x, q1y, q2x, q2y);
+    line(q2x, q2y, q3x, q3y);
+
+    circleFill(q1x, q1y, espessura, 100);
+    circleFill(q2x, q2y, espessura, 100);
+    circleFill(q3x, q3y, espessura, 100);
 }
 
 void Curva::desenha_fecho()
 {
-    for(int i = 0; i < 3; i++)
-    {
-        line(pontos[i]->x, pontos[i]->y, pontos[i+1]->x, pontos[i+1]->y);
-    }
-
-    line(pontos[3]->x, pontos[3]->y, pontos[0]->x, pontos[0]->y);
+    color(0.3, 0.3, 0.3);
+    rect(menorX(), menorY(), maiorX(), maiorY());
 }
 
 void Curva::desenha_func(float t)
@@ -83,22 +84,96 @@ void Curva::desenha_func(float t)
     int x_ = round(pow(1-t, 3) * pontos[0]->x + (3*t * pow((1-t), 2)) * pontos[1]->x + (3 * pow(t, 2) * (1-t)) * pontos[2]->x + pow(t, 3) * pontos[3]->x);
     int y_ = round(pow(1-t, 3) * pontos[0]->y + (3*t * pow((1-t), 2)) * pontos[1]->y + (3 * pow(t, 2) * (1-t)) * pontos[2]->y + pow(t, 3) * pontos[3]->y);
     circleFill(x_, y_, 3, 100);
-        //point(x_, y_);
+}
+
+void Curva::desenha_blending_functions()
+{
+    color(0, 0, 0);
+
+    for(float t = 0; t <= 1; t += 0.001)
+    {
+        int x_ = round(pow(1-t, 3));
+        int y_ = round(pow(1-t, 3));
+        circleFill(100*x_, 100*y_, espessura, 100);
+    }
+
+    for(float t = 0; t <= 1; t += 0.001)
+    {
+        int x_ = round((3*t * pow((1-t), 2)));
+        int y_ = round((3*t * pow((1-t), 2)));
+        circleFill(100*x_, 100*y_, espessura, 100);
+    }
+
+    for(float t = 0; t <= 1; t += 0.001)
+    {
+        int x_ = round((3 * pow(t, 2) * (1-t)));
+        int y_ = round((3 * pow(t, 2) * (1-t)));
+        circleFill(100*x_, 100*y_, espessura, 100);
+    }
+
+    for(float t = 0; t <= 1; t += 0.001)
+    {
+        int x_ = round(pow(t, 3));
+        int y_ = round(pow(t, 3));
+        circleFill(100*x_, 100*y_, espessura, 100);
+    }
+}
+
+int Curva::menorX()
+{
+    int menor = 10000;
+
+    for(int i = 0; i < pontos.size(); i++)
+    {
+        if(pontos[i]->x < menor) menor = pontos[i]->x;
+    }
+
+    return menor;
+}
+
+int Curva::menorY()
+{
+    int menor = 10000;
+
+    for(int i = 0; i < pontos.size(); i++)
+    {
+        if(pontos[i]->y < menor) menor = pontos[i]->y;
+    }
+
+    return menor;
+}
+
+int Curva::maiorX()
+{
+    int maior = -1;
+
+    for(int i = 0; i < pontos.size(); i++)
+    {
+        if(pontos[i]->x > maior) maior = pontos[i]->x;
+    }
+
+    return maior;
+}
+
+int Curva::maiorY()
+{
+    int maior = -1;
+
+    for(int i = 0; i < pontos.size(); i++)
+    {
+        if(pontos[i]->y > maior) maior = pontos[i]->y;
+    }
+
+    return maior;
 }
 
 void Curva::desenha()
 {
+    color(1, 0, 0);
     for(float t = 0; t <= 1; t += 0.001)
     {
         int x_ = round(pow(1-t, 3) * pontos[0]->x + (3*t * pow((1-t), 2)) * pontos[1]->x + (3 * pow(t, 2) * (1-t)) * pontos[2]->x + pow(t, 3) * pontos[3]->x);
         int y_ = round(pow(1-t, 3) * pontos[0]->y + (3*t * pow((1-t), 2)) * pontos[1]->y + (3 * pow(t, 2) * (1-t)) * pontos[2]->y + pow(t, 3) * pontos[3]->y);
         circleFill(x_, y_, espessura, 100);
-        //point(x_, y_);
     }
-
-    color(0.2, 0.8, 0.3);
-    desenha_fecho();
-    color(1, 0, 0);
-    desenha_grafo();
-    //printf("\nAconteceu: %d %d", x, y);
 }

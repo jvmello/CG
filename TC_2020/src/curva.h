@@ -7,7 +7,7 @@
 #include "ponto.h"
 using namespace std;
 #include <vector>
-//#include <Windows.h>
+#include <math.h>
 #include <unistd.h>
 
 #ifndef CURVA_H
@@ -18,15 +18,22 @@ class Curva
    public:
         int x, y;
         int ativada, espessura;
-        float R, G, B;
         vector<Ponto*> pontos;
-        Curva(vector<Ponto*>, float, float, float);
+        Curva(vector<Ponto*>);
+        
         void   desenha_grafo();
         void   desenha_fecho();
-        void   desenha_retas(float);
+        void   desenha_reta_r(float);
+        void   desenha_reta_q(float);
         void   desenha_func(float);
+        void   desenha_blending_functions();
+
+        int menorX();
+        int menorY();
+        int maiorX();
+        int maiorY();
+
         void   desenha();
-        int    colisao(int, int);
 };
 
 #endif

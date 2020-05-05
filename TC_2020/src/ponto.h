@@ -13,9 +13,8 @@ class Ponto
    public:
         int x, y;
         int ativado;
-        float R, G, B;
         Ponto(int, int);
-        Ponto(int, int, float, float, float);
+        Ponto();
         int    getx(void);
         int    gety(void);
         void   desenha();
