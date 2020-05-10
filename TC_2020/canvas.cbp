@@ -46,8 +46,8 @@
 		<Unit filename="include/GL/glut.h" />
 		<Unit filename="src/botao.cpp" />
 		<Unit filename="src/botao.h" />
-		<Unit filename="src/cor.cpp" />
-		<Unit filename="src/cor.h" />
+		<Unit filename="src/checkbox.cpp" />
+		<Unit filename="src/checkbox.h" />
 		<Unit filename="src/curva.cpp" />
 		<Unit filename="src/curva.h" />
 		<Unit filename="src/gl_canvas2d.cpp" />
@@ -57,8 +57,6 @@
 		<Unit filename="src/painel.h" />
 		<Unit filename="src/ponto.cpp" />
 		<Unit filename="src/ponto.h" />
-		<Unit filename="src/uteis.cpp" />
-		<Unit filename="src/uteis.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

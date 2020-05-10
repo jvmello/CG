@@ -1,13 +1,16 @@
 //João Vitor Machado de Mello, matrícula 201511255, jvmello@inf.ufsm.br
-/*
-	- Para utilizar, é preciso escolher um tipo de figura e um tipo de ação, também é possível escolher um tipo de cor (se não escolher, vai ser preta a imagem)
-	- É possível aumentar/diminuir o tamanho, modificar a posição, preencher os círculos e rotacionar as linhas/quadrados (sentido horário e anti-horário)
-	- Comandos de teclado
-		- WASD para movimentar uma imagem (precisa estar selecionada)
-		- Q e E para rotacionar a imagem em sentido anti-horário ou horário
-		- Z e C para diminuir/aumentar o tamanho da imagem
-		- Delete para resetar uma imagem selecionada
-		- P para sobrepor uma figura a outra
+/*  Implementa uma curva com quatro pontos de controle.
+
+	- Para utilizar, é preciso escolher um tipo de ação;
+    - Ativa cada recurso por checkbox;
+    - Botão "resetar" reinicia os elementos;
+    - Botão "inserir" insere pontos;
+    - Botão "selecionar" seleciona e arrasta pontos;
+	- É possível ver as retas se formando, visualizar grafo de controle, fecho convexo e animações
+	- Clicar em um ponto e arrastar ele
+	- P para pausar/retomar animação
+    - Usar o wheel do mouse pra aumentar/diminuir velocidade da animação;
+    - Modificar a espessura da curva.
 */
 
 #include <GL/glut.h>
@@ -48,6 +51,7 @@ int fecho_convexo = 0;
 int blending_functions = 0;
 int continua = 0;
 int arrastando = 0;
+float incremento = 0.001;
 float t = 0;
 
 //função para desabilitar algumas funções (auxilia no controle da interface)
@@ -62,10 +66,47 @@ void desativa_tudo(char* tipo)
 
     if(tipo == "Ponto")
     {
-        for(int i = 0; i < pontos.size(); ++i)
+        for(int i = 0; i < pontos.size(); i++)
         {
             pontos[i]->ativado = 0;
         }
+    }
+}
+
+void desenha_blending_functions() //desenha blending functions
+{
+    color(0, 0, 0);
+    int x, y;
+
+    line(733, 10, 733, 120);
+    line(733, 120, 840, 120);
+
+    for(float t = 0; t <= 1; t += 0.01)
+    {
+        x = round(100 * t);
+        y = round(100 * pow(1-t, 3));
+        circleFill(737 + x, 13 + y, 2, 100);
+    }
+
+    for(float t = 0; t <= 1; t += 0.01)
+    {
+        x = round(100 * t);
+        y = round(100 * (3*t * pow((1-t), 2)));
+        circleFill(737 + x, 13 + y, 2, 100);
+    }
+
+    for(float t = 0; t <= 1; t += 0.01)
+    {
+        x = round(100 * t);
+        y = round(100 * (3 * pow(t, 2) * (1-t)));
+        circleFill(737 + x, 13 + y, 2, 100);
+    }
+
+    for(float t = 0; t <= 1; t += 0.01)
+    {
+        x = round(100 * t);
+        y = round(100 * pow(t, 3));
+        circleFill(737 + x, 13 + y, 2, 100);
     }
 }
 
@@ -109,7 +150,7 @@ void desenha()
 
     color(0, 0, 0);
 
-    text(985, 570, "Menu");
+    text(1000, 570, "Menu");
     bresetar->desenha();
     bselecionar->desenha();
     binserir->desenha();
@@ -123,7 +164,7 @@ void desenha()
 
     color(0, 0, 0);
     line(860, 330, 1190, 330);
-    text(980, 310, "Funcoes");
+    text(990, 310, "Funcoes");
 
     cb1->desenha();
     cb2->desenha();
@@ -156,7 +197,7 @@ void desenha()
     color(0, 0, 0);
     rectFill(1155, 20, 1185, 50);
 
-    for(int i = 0; i < pontos.size(); i++)
+    for(int i = 0; i < pontos.size(); i++) //Desenha os pontos
     {
         pontos[i]->desenha();
 
@@ -166,18 +207,13 @@ void desenha()
         if(i == 3) text(pontos[3]->x - 20, pontos[3]->y + 20, "P4");
     }
 
-    if(pontos.size() == 4)
-    {
-        
-    }
-
-    if(curva)
+    if(curva) //Se a curva existe, tenta desenhar
     {
         if(mostra_curva) c->desenha();
 
         if(animacao)
         {
-            if(continua) t += 0.005;
+            if(continua) t += incremento;
             color(1, 1, 1);
             c->desenha_func(t);
 
@@ -189,11 +225,12 @@ void desenha()
 
         if(grafo_de_controle) c->desenha_grafo();
         if(fecho_convexo) c->desenha_fecho();
-        if(blending_functions) c->desenha_blending_functions();
     }
 
+    if(blending_functions) desenha_blending_functions();
+
     color(0, 0, 0);
-    text(15, 15, "t = ");
+    text(15, 15, "t = "); //Monitora a variável T
     stringstream str;
     str << t;
     string temp_str = str.str();
@@ -209,7 +246,7 @@ void render()
 //funcao chamada toda vez que uma tecla for pressionada.
 void keyboard(int key)
 {
-    if(key == 112) continua = !continua;
+    if(key == 112) continua = !continua; //Animação
 }
 
 //funcao chamada toda vez que uma tecla for liberada
@@ -249,6 +286,7 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
             t = 0;
         }
 
+        //Controla espessura
         if(bespmais->colisao(mouseX, mouseY))
         {
             if(curva)
@@ -264,6 +302,7 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
             }
         }
 
+        //Checks de funções
         if(cb1->colisao(mouseX, mouseY))
         {
             cb1->ativado = !cb1->ativado;
@@ -306,7 +345,7 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
             if(op == 1) //Selecionar
             {
                 desativa_tudo("Ponto");
-                for(int i = 0; i < pontos.size(); ++i)
+                for(int i = 0; i < pontos.size(); i++)
                 {
                     if(pontos[i]->colisao(mouseX, mouseY))
                     {
@@ -332,11 +371,11 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
         }
     }
 
-    if(state == -2)
+    if(state == -2) //Verifica se o mouse está em estado de "arrastar", ativado pelo selecionar
     {
         if(arrastando)
         {
-            for(int i = 0; i < pontos.size(); ++i)
+            for(int i = 0; i < pontos.size(); i++) //Modifica de acordo com a posição do mouse enquanto arrasta
             {
                 if(pontos[i]->ativado)
                 {
@@ -347,10 +386,11 @@ void mouse(int button, int state, int wheel, int direction, int x, int y)
         }
     }
 
-    if(state == 1)
-    {
-        arrastando = 0;
-    }
+    if(state == 1) arrastando = 0;
+
+    //Wheel incrementa velocidade
+    if(direction == 1) incremento += 0.0001;
+    if(direction == -1 && incremento > 0) incremento -= 0.0001;
 }
 
 int main(void)

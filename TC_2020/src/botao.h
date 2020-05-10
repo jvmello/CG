@@ -9,7 +9,6 @@ class Botao
    public:
         char*  texto;
         Ponto *p1, *p2;
-        int x1, x2, y1, y2;
         int ativado;
         Botao(int, int, int, int, char*);
         int    getx1(void);

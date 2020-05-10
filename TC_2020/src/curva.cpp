@@ -5,7 +5,7 @@
 
 #include "curva.h"
 
-Curva::Curva(vector<Ponto*> p)
+Curva::Curva(vector<Ponto*> p) //cria com espessura default
 {
     ativada = 0;
     for (int i=0; i<p.size(); i++){
@@ -20,13 +20,13 @@ Curva::Curva(vector<Ponto*> p)
 void Curva::desenha_grafo()
 {
     color(0.5, 0.5, 0.5);
-    for(int i = 0; i < 3; i++)
+    for(int i = 0; i < 3; i++) //desenha grafo de controle
     {
         line(pontos[i]->x, pontos[i]->y, pontos[i+1]->x, pontos[i+1]->y);
     }
 }
 
-void Curva::desenha_reta_r(float t)
+void Curva::desenha_reta_r(float t) //retas R
 {
     color(0, 0, 1);
 
@@ -52,7 +52,7 @@ void Curva::desenha_reta_r(float t)
     circleFill(r2x, r2y, espessura, 100);
 }
 
-void Curva::desenha_reta_q(float t)
+void Curva::desenha_reta_q(float t) //retas Q
 {
     color(0, 1, 0);
 
@@ -73,52 +73,20 @@ void Curva::desenha_reta_q(float t)
     circleFill(q3x, q3y, espessura, 100);
 }
 
-void Curva::desenha_fecho()
+void Curva::desenha_fecho() //fecho convexo
 {
     color(0.3, 0.3, 0.3);
     rect(menorX(), menorY(), maiorX(), maiorY());
 }
 
-void Curva::desenha_func(float t)
+void Curva::desenha_func(float t) //animação, vai de acordo com o t e desenha um ponto
 {
     int x_ = round(pow(1-t, 3) * pontos[0]->x + (3*t * pow((1-t), 2)) * pontos[1]->x + (3 * pow(t, 2) * (1-t)) * pontos[2]->x + pow(t, 3) * pontos[3]->x);
     int y_ = round(pow(1-t, 3) * pontos[0]->y + (3*t * pow((1-t), 2)) * pontos[1]->y + (3 * pow(t, 2) * (1-t)) * pontos[2]->y + pow(t, 3) * pontos[3]->y);
-    circleFill(x_, y_, 3, 100);
+    circleFill(x_, y_, espessura, 100);
 }
 
-void Curva::desenha_blending_functions()
-{
-    color(0, 0, 0);
-
-    for(float t = 0; t <= 1; t += 0.001)
-    {
-        int x_ = round(pow(1-t, 3));
-        int y_ = round(pow(1-t, 3));
-        circleFill(100*x_, 100*y_, espessura, 100);
-    }
-
-    for(float t = 0; t <= 1; t += 0.001)
-    {
-        int x_ = round((3*t * pow((1-t), 2)));
-        int y_ = round((3*t * pow((1-t), 2)));
-        circleFill(100*x_, 100*y_, espessura, 100);
-    }
-
-    for(float t = 0; t <= 1; t += 0.001)
-    {
-        int x_ = round((3 * pow(t, 2) * (1-t)));
-        int y_ = round((3 * pow(t, 2) * (1-t)));
-        circleFill(100*x_, 100*y_, espessura, 100);
-    }
-
-    for(float t = 0; t <= 1; t += 0.001)
-    {
-        int x_ = round(pow(t, 3));
-        int y_ = round(pow(t, 3));
-        circleFill(100*x_, 100*y_, espessura, 100);
-    }
-}
-
+//funções para fecho
 int Curva::menorX()
 {
     int menor = 10000;
@@ -167,7 +135,8 @@ int Curva::maiorY()
     return maior;
 }
 
-void Curva::desenha()
+
+void Curva::desenha() //desenha a curva completa
 {
     color(1, 0, 0);
     for(float t = 0; t <= 1; t += 0.001)

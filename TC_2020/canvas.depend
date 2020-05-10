@@ -94,20 +94,20 @@
 1426372440 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\include\gl\freeglut_ext.h
 	<stdarg.h>
 
-1588546507 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\main.cpp
+1588811433 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
-	<math.h>
 	<stdio.h>
 	<stdlib.h>
 	<vector>
+	<sstream>
+	<string.h>
 	"gl_canvas2d.h"
-	"ponto.h"
 	"botao.h"
-	"painel.h"
-	"uteis.h"
-	"cor.h"
+	"checkbox.h"
 	"curva.h"
+	"painel.h"
+	"ponto.h"
 
 1585520498 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\bmp.h
 	<stdio.h>
@@ -117,7 +117,7 @@
 	"Bmp.h"
 	<string.h>
 
-1587262902 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\botao.h
+1588729312 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\botao.h
 	"ponto.h"
 
 1587262895 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\botao.cpp
@@ -126,9 +126,9 @@
 
 1585698378 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\slider.h
 
-1587262915 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\checkbox.h
+1588641011 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\checkbox.h
 
-1587262908 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\checkbox.cpp
+1588641655 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\checkbox.cpp
 	"checkbox.h"
 	"gl_canvas2d.h"
 
@@ -162,22 +162,23 @@
 	<math.h>
 	"ponto.h"
 
-1588450836 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\ponto.h
+1588646219 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\ponto.h
 	"gl_canvas2d.h"
 
-1588450961 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\ponto.cpp
+1588729123 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\ponto.cpp
 	"ponto.h"
 
 1587314954 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\circulo.cpp
 
 1587314935 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\linha.cpp
 
-1588557740 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\curva.cpp
+1588813653 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\curva.cpp
 	"curva.h"
 
-1588543040 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\curva.h
+1588813669 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\curva.h
 	"gl_canvas2d.h"
 	"ponto.h"
 	<vector>
+	<math.h>
 	<unistd.h>
 
