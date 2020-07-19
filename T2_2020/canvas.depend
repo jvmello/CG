@@ -1,0 +1,48 @@
+# depslib dependency file v1.0
+1585611132 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\gl_canvas2d.cpp
+	"gl_canvas2d.h"
+	<GL/glut.h>
+
+1588461517 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\gl_canvas2d.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+
+1426372440 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\include\gl\glut.h
+	"freeglut_std.h"
+
+1437579942 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\include\gl\freeglut_std.h
+	<windows.h>
+	<EGL/egl.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1426372440 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\include\gl\freeglut_ext.h
+	<stdarg.h>
+
+1594602894 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\main.cpp
+	<GL/glut.h>
+	<GL/freeglut_ext.h>
+	<stdio.h>
+	<stdlib.h>
+	<vector>
+	<sstream>
+	<string.h>
+	"gl_canvas2d.h"
+	"ponto.h"
+
+1594602816 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\ponto.h
+	"gl_canvas2d.h"
+	<math.h>
+
+1594603028 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\ponto.cpp
+	"ponto.h"
+
