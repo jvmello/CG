@@ -18,9 +18,12 @@ using namespace std;
 #include "ponto2D.h"
 #include "ponto3D.h"
 
+#include "figura2D.h"
+
 int screenWidth = 1200, screenHeight = 600;
 int mouseX, mouseY;
 int op = 0;
+int ang = 0;
 
 int d = 30;
 
@@ -32,6 +35,8 @@ Ponto3D* p5 = new Ponto3D(100, 100, 35, d);
 Ponto3D* p6 = new Ponto3D(100, 200, 35, d);
 Ponto3D* p7 = new Ponto3D(200, 200, 35, d);
 Ponto3D* p8 = new Ponto3D(200, 100, 35, d);
+
+Figura2D* f1 = new Figura2D(300, 300);
 
 void DrawMouseScreenCoords()
 {
@@ -51,6 +56,8 @@ void init()
     p6->recalcula();
     p7->recalcula();
     p8->recalcula();
+
+    f1->rotaciona_horario(90);
 }
 
 void desenha_cubo(){
@@ -124,7 +131,10 @@ void desenha_cubo(){
 //Função a ser chamada na render para organizar o código, basicamente desenha cada elemento
 void desenha()
 {
-    desenha_cubo();
+    //desenha_cubo();
+    color(0, 0, 0);
+    f1->desenha();
+    //Sleep(100);
 }
 
 void render()

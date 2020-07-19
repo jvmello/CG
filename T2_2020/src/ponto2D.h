@@ -6,25 +6,18 @@
 #include "gl_canvas2d.h"
 #include <math.h>
 
-#ifndef PONTO_H
-#define PONTO_H
+#ifndef PONTO2D_H
+#define PONTO2D_H
 
-class Ponto
+class Ponto2D
 {
    public:
-        int x, y, z, d;
-        int ativado;
-        float ang;
-        Ponto(int, int, int, int);
-        Ponto();
-        void   rotacionaX();
-        void   rotacionaY();
-        void   rotacionaZ();
+        int x, y;
+        Ponto2D(int, int);
+        Ponto2D();
         int    getx(void);
         int    gety(void);
         void   desenha();
-        int    colisao(int, int, int);
-        void   recalcula();
 };
 
 #endif

@@ -47,6 +47,8 @@
 		<Unit filename="include/GL/freeglut_ext.h" />
 		<Unit filename="include/GL/freeglut_std.h" />
 		<Unit filename="include/GL/glut.h" />
+		<Unit filename="src/figura2D.cpp" />
+		<Unit filename="src/figura2D.h" />
 		<Unit filename="src/gl_canvas2d.cpp" />
 		<Unit filename="src/gl_canvas2d.h" />
 		<Unit filename="src/main.cpp" />

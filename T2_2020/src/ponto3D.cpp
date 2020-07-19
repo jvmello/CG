@@ -5,7 +5,7 @@
 
 #include "ponto3D.h"
 
-Ponto::Ponto(int x_, int y_, int z_, int d_)
+Ponto3D::Ponto3D(int x_, int y_, int z_, int d_)
 {
     x = x_;
     y = y_;
@@ -16,7 +16,7 @@ Ponto::Ponto(int x_, int y_, int z_, int d_)
     ang = 0;
 }
 
-Ponto::Ponto()
+Ponto3D::Ponto3D()
 {
     x = 0;
     y = 0;
@@ -26,14 +26,14 @@ Ponto::Ponto()
     ang = 0;
 }
 
-void Ponto::recalcula()
+void Ponto3D::recalcula()
 {
     x = round((x*d)/z);
     y = round((y*d)/z);
 
 }
 
-void Ponto::rotacionaX()
+void Ponto3D::rotacionaX()
 {
   ang += 0.000000001;
 
@@ -42,7 +42,7 @@ void Ponto::rotacionaX()
   z = sin(ang)*y + cos(ang)*z;
 }
 
-void Ponto::rotacionaY()
+void Ponto3D::rotacionaY()
 {
   ang += 0.000000001;
 
@@ -51,7 +51,7 @@ void Ponto::rotacionaY()
   z = -sin(ang)*x + cos(ang)*z;
 }
 
-void Ponto::rotacionaZ()
+void Ponto3D::rotacionaZ()
 {
   ang += 0.000000001;
 
@@ -60,17 +60,17 @@ void Ponto::rotacionaZ()
   z = z;
 }
 
-int Ponto::getx(void)
+int Ponto3D::getx(void)
 {
     return x;
 }
 
-int Ponto::gety(void)
+int Ponto3D::gety(void)
 {
     return y;
 }
 
-void Ponto::desenha()
+void Ponto3D::desenha()
 {
 	if(ativado)
 	{
