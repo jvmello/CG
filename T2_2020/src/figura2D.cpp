@@ -25,33 +25,34 @@ Figura2D::Figura2D(int x, int y)
 Ponto2D* Figura2D::rotaciona_ponto(Ponto2D* p, int px, int py, int angulo, int op)
 {
     double ang_rotacao = (double) angulo / 180.0 * (PI_2/2);
+    //printf("\n%f\n", ang_rotacao);
     float s = sin(ang_rotacao);
     float c = cos(ang_rotacao);
+
+    //printf("\nantes %d %d", p->x, p->y);
 
     p->x -= px;
     p->y -= py;
 
-    float xnew, ynew;
+    //printf("\ndepois %d %d\n", p->x, p->y);
 
-    if(!op) //antihorario
-    {
-        xnew = p->x * c - p->y * s;
-        ynew = p->x * s + p->y * c;
-    }
-    else
-    {
-        xnew = p->x * c + p->y * s;
-        ynew = -p->x * s + p->y * c;
-    }
+    //return p;
+
+    float xnew = p->x, ynew = p->y;
+
+    xnew = p->x * c - p->y * s;
+    ynew = p->x * s + p->y * c;
 
     p->x = xnew + px;
     p->y = ynew + py;
+
+    //Sleep(50);
 
     return p;
 }
 
 //Aplicam a rotação anti-horária e horária em todos os pontos da linha/quadrado
-void Figura2D::rotaciona_anti_horario(float angulo)
+void Figura2D::rotaciona_anti_horario(int angulo)
 {
     for(int i = 0; i < pontos; i++)
     {
@@ -60,11 +61,11 @@ void Figura2D::rotaciona_anti_horario(float angulo)
     rotacao -= angulo;
 }
 
-void Figura2D::rotaciona_horario(float angulo)
+void Figura2D::rotaciona_horario(int angulo)
 {
     for(int i = 0; i < pontos; i++)
     {
-        p[i] = rotaciona_ponto(p[i], px, py, 10, 1);
+        p[i] = rotaciona_ponto(p[i], px, py, angulo, 1);
     }
 
     rotacao += angulo;

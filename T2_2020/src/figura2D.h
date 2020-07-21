@@ -27,8 +27,8 @@ class Figura2D
         Figura2D(int, int);
 
         Ponto2D* rotaciona_ponto(Ponto2D*, int, int, int, int);
-        void rotaciona_horario(float);
-        void rotaciona_anti_horario(float);
+        void rotaciona_horario(int);
+        void rotaciona_anti_horario(int);
 
         void   desenha();
 };

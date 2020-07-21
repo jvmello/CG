@@ -32,3 +32,21 @@ void Ponto2D::desenha()
     color(0, 0, 0);
     circleFill(x, y, 5, 20);
 }
+
+void Ponto2D::rotaciona(int px, int py, double angulo)
+{
+    double ang_rotacao = (double) angulo / 180.0 * (PI_2/2);
+    //printf("\n%f\n", ang_rotacao);
+    double s = sin(ang_rotacao);
+    double c = cos(ang_rotacao);
+
+    x -= px;
+    y -= py;
+
+    double xnew, ynew;
+    xnew = x * c - y * s;
+    ynew = x * s + y * c;
+
+   	x = round(xnew + px);
+    y = round(ynew + py);
+}
