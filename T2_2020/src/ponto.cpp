@@ -5,69 +5,60 @@
 
 #include "ponto.h"
 
-Ponto::Ponto(int x_, int y_, int z_, int d_)
+Ponto::Ponto(float x, float y, float z)
 {
-    x = x_;
-    y = y_;
-    z = z_;
-    d = d_;
-
-    ativado = 0;
-    ang = 0;
+    this->x = x_;
+    this->y = y_;
+    this->this->z = z_;
 }
 
 Ponto::Ponto()
 {
-    x = 0;
-    y = 0;
-    z = 0;
-
-    ativado = 0;
-    ang = 0;
-}
-
-void Ponto::recalcula()
-{
-    x = round((x*d)/z);
-    y = round((y*d)/z);
-
+    this->x = 0;
+    this->y = 0;
+    this->z = 0;
 }
 
 void Ponto::rotacionaX()
 {
-  ang += 0.000000001;
+    ang += 0.000000001;
 
-  x = x;
-  y = cos(ang)*y - sin(ang)*z;
-  z = sin(ang)*y + cos(ang)*z;
+    x = x;
+    y = cos(ang)*y - sin(ang)*z;
+    z = sin(ang)*y + cos(ang)*z;
 }
 
 void Ponto::rotacionaY()
 {
-  ang += 0.000000001;
+    ang += 0.000000001;
 
-  x = cos(ang)*x + cos(ang)*z;
-  y = y;
-  z = -sin(ang)*x + cos(ang)*z;
+    x = cos(ang)*x + cos(ang)*z;
+    y = y;
+    z = -sin(ang)*x + cos(ang)*z;
 }
 
 void Ponto::rotacionaZ()
 {
-  ang += 0.000000001;
+    ang += 0.000000001;
 
-  x = cos(ang)*x - sin(ang)*y;
-  y = sin(ang)*x + cos(ang)*y;
-  z = z;
+    x = cos(ang)*x - sin(ang)*y;
+    y = sin(ang)*x + cos(ang)*y;
+    z = z;
 }
 
-int Ponto::getx(void)
+int Ponto::get_x(void)
 {
-    return x;
+    return this->x;
 }
 
-int Ponto::gety(void)
+int Ponto::get_y(void)
 {
-    return y;
+    return this->y;
+}
+
+int Ponto::get_z(void)
+{
+    return this->y;
 }
 
 void Ponto::desenha()

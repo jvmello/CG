@@ -15,10 +15,7 @@ using namespace std;
 
 #include "gl_canvas2d.h"
 
-#include "ponto2D.h"
-#include "ponto3D.h"
-
-#include "figura2D.h"
+#include "ponto.h"
 
 int screenWidth = 1200, screenHeight = 600;
 int mouseX, mouseY;

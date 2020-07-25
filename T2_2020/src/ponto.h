@@ -12,7 +12,7 @@
 class Ponto
 {
    public:
-        int x, y, z, d;
+        float x, y, z;
         int ativado;
         float ang;
         Ponto(int, int, int, int);
@@ -20,10 +20,10 @@ class Ponto
         void   rotacionaX();
         void   rotacionaY();
         void   rotacionaZ();
-        int    getx(void);
-        int    gety(void);
+        int    get_x(void);
+        int    get_y(void);
+        int    get_z(void);
         void   desenha();
-        int    colisao(int, int, int);
         void   recalcula();
 };
 
