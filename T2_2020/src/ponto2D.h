@@ -19,6 +19,7 @@ class Ponto2D
         int    gety(void);
         void   desenha();
         void   rotaciona(int, int, double);
+        void   translada(int, int);
 };
 
 #endif

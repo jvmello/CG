@@ -50,3 +50,9 @@ void Ponto2D::rotaciona(int px, int py, double angulo)
    	x = round(xnew + px);
     y = round(ynew + py);
 }
+
+void Ponto2D::translada(int px, int py)
+{
+    x += px;
+    y += py;
+}
