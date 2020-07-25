@@ -1,21 +1,21 @@
 #include "biela.h"
 
-Biela::Biela(Ponto*, float)
+Biela::Biela(Ponto* p, float tam)
 {
 
 }
 
-void Biela::translada(Ponto*)
+void Biela::translada(Ponto* p)
 {
 
 }
 
-void Biela::conexao(Ponto*, float)
+void Biela::encaixe(Ponto* p, float ang)
 {
 
 }
 
-void Biela::rotaciona(float, float, float)
+void Biela::rotaciona(float ang_x, float ang_y, float ang_z)
 {
 
 }

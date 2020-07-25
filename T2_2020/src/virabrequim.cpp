@@ -1,6 +1,6 @@
 #include "virabrequim.h"
 
-Virabrequim::Virabrequim(Ponto*, float)
+Virabrequim::Virabrequim(Ponto* p, float tam)
 {
     
 }
@@ -15,17 +15,17 @@ Ponto* Virabrequim::get_centro()
 
 }
     
-void Virabrequim::translada(Ponto*)
+void Virabrequim::translada(Ponto* p)
 {
 
 }
 
-void Virabrequim::rotaciona(float, float, float)
+void Virabrequim::rotaciona(float ang_x, float ang_y, float ang_z)
 {
 
 }
 
-void Virabrequim::KeyInput(int)
+void Virabrequim::KeyInput(int key)
 {
 
 }
