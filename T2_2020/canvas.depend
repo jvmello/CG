@@ -28,7 +28,7 @@
 1426372440 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\include\gl\freeglut_ext.h
 	<stdarg.h>
 
-1595385116 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\main.cpp
+1595722471 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\main.cpp
 	<GL/glut.h>
 	<GL/freeglut_ext.h>
 	<stdio.h>
@@ -37,15 +37,18 @@
 	<sstream>
 	<string.h>
 	"gl_canvas2d.h"
-	"ponto2D.h"
-	"ponto3D.h"
-	"figura2D.h"
+	"ponto.h"
+	"virabrequim.h"
+	"biela.h"
+	"pistao.h"
+	"motor.h"
+	"auxiliares.h"
 
-1594602816 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\ponto.h
+1595711315 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\ponto.h
 	"gl_canvas2d.h"
 	<math.h>
 
-1594603028 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\ponto.cpp
+1595720035 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\ponto.cpp
 	"ponto.h"
 
 1595378656 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\ponto2d.cpp
@@ -69,4 +72,41 @@
 1595171365 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\figura2d.h
 	<math.h>
 	"ponto2D.h"
+
+1595706350 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\biela.cpp
+	"biela.h"
+
+1595706401 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\biela.h
+	<vector>
+	"ponto.h"
+
+1595647811 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\motor.cpp
+
+1595706367 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\pistao.cpp
+	"pistao.h"
+
+1595711362 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\pistao.h
+	<vector>
+	"ponto.h"
+
+1595706290 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\virabrequim.cpp
+	"virabrequim.h"
+
+1595703057 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\virabrequim.h
+	<vector>
+	"ponto.h"
+
+1595722317 source:c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\auxiliares.cpp
+	"auxiliares.h"
+
+1595721176 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\auxiliares.h
+	<math.h>
+	"Ponto.h"
+
+1595722721 c:\users\jv\desktop\cg\demos\gl_1_canvasglut\src\motor.h
+	<vector>
+	<math.h>
+	"virabrequim.h"
+	"biela.h"
+	"pistao.h"
 

@@ -1,22 +1,22 @@
-#ifndef PISTAO_H_INCLUDED
-#define PISTAO_H_INCLUDED
-
 #include <vector>
 #include "ponto.h"
 
-class Pistao{
-public:
-	std::vector<Ponto*> pontos;
-    int camera_fixa;
+#ifndef PISTAO_H_INCLUDED
+#define PISTAO_H_INCLUDED
 
-    Pistao(Ponto*, float);
+class Pistao
+{
+	public:
+		std::vector<Ponto*> pontos;
+	    int camera_fixa;
 
-    void translada(Ponto*);
-    void rotaciona(float, float, float);
-    void encaixe(Ponto*);
-    void KeyInput(int);
-    void desenha();
+	    Pistao(Ponto*, float);
+
+	    void translada(Ponto*);
+	    void rotaciona(float, float, float);
+	    void encaixe(Ponto*);
+	    void KeyInput(int);
+	    void desenha();
 };
-
 
 #endif // PISTAO_H_INCLUDED

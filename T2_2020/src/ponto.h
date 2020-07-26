@@ -13,18 +13,13 @@ class Ponto
 {
    public:
         float x, y, z;
-        int ativado;
-        float ang;
-        Ponto(int, int, int, int);
+        
+        Ponto(float, float, float);
         Ponto();
-        void   rotacionaX();
-        void   rotacionaY();
-        void   rotacionaZ();
+        
         int    get_x(void);
         int    get_y(void);
         int    get_z(void);
-        void   desenha();
-        void   recalcula();
 };
 
 #endif
