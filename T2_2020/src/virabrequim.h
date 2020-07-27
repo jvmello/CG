@@ -8,14 +8,15 @@ class Virabrequim{
 public:
     std::vector<Ponto*> pontos;
     Ponto* p_biela;
-    int rotacao_fixa;
     float tamanho;
+    Ponto* centro;
+    float tam;
 
-    Virabrequim(Ponto*, float);
+    Virabrequim(float, float, float, float);
     Ponto* get_biela();
     Ponto* get_centro();
     
-    void translada(Ponto*);
+    void translada(float, float, float);
     void rotaciona(float, float, float);
     void KeyInput(int);
     void desenha();

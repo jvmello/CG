@@ -7,14 +7,13 @@
 class Biela{
 public:
     std::vector<Ponto*> pontos;
-    float tamanho;
-    Ponto* pt_pistao;
-    int rotacao_fixa;
-    int camera_fixa;
+    float tam;
+    Ponto* p_pistao;
+    Ponto* centro;
 
-    Biela(Ponto*, float);
+    Biela(float, float, float, float);
 
-    void translada(Ponto*);
+    void translada(float, float, float);
     void encaixe(Ponto*, float);
     void rotaciona(float, float, float);
     Ponto* get_pistao();

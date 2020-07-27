@@ -29,6 +29,8 @@ int ang = 0;
 
 int d = 30;
 
+Motor* motor2D;
+
 void DrawMouseScreenCoords()
 {
     //char str[100];
@@ -39,7 +41,7 @@ void DrawMouseScreenCoords()
 //Inicialização de elementos
 void init()
 {
-
+    motor2D = new Motor(800, 200, 200, 600, 1);
 }
 
 //Função a ser chamada na render para organizar o código, basicamente desenha cada elemento
@@ -47,7 +49,8 @@ void desenha()
 {
     color(0, 0, 0);
 
-
+    motor2D->movimento();
+    motor2D->desenha();
 }
 
 void render()

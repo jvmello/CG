@@ -14,6 +14,7 @@ public:
     Pistao* pistao;
     float tam;
     int num_pistao;
+    Ponto* centro;
 
     Motor(float, float, float, float tamanho, int);
 

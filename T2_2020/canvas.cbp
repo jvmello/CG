@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="Canvas C++" />
+		<Option title="T2_CG_2020" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -43,6 +43,21 @@
 			<Add library="../lib/libopengl32.a" />
 			<Add library="../lib/freeglut.lib" />
 		</Linker>
+		<Unit filename="src/auxiliares.cpp" />
+		<Unit filename="src/auxiliares.h" />
+		<Unit filename="src/biela.cpp" />
+		<Unit filename="src/biela.h" />
+		<Unit filename="src/gl_canvas2d.cpp" />
+		<Unit filename="src/gl_canvas2d.h" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/motor.cpp" />
+		<Unit filename="src/motor.h" />
+		<Unit filename="src/pistao.cpp" />
+		<Unit filename="src/pistao.h" />
+		<Unit filename="src/ponto.cpp" />
+		<Unit filename="src/ponto.h" />
+		<Unit filename="src/virabrequim.cpp" />
+		<Unit filename="src/virabrequim.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

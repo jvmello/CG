@@ -9,10 +9,12 @@ class Pistao
 	public:
 		std::vector<Ponto*> pontos;
 	    int camera_fixa;
+	    Ponto* centro;
+	    float tam;
 
-	    Pistao(Ponto*, float);
+	    Pistao(float, float, float, float);
 
-	    void translada(Ponto*);
+	    void translada(float, float, float);
 	    void rotaciona(float, float, float);
 	    void encaixe(Ponto*);
 	    void KeyInput(int);
