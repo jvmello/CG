@@ -63,7 +63,6 @@ void Biela::encaixe(Ponto* p, float ang)
 
     this->pontos.clear();
 
-    //float m = this->tam/4;
     float m = this->tam/4;
     this->pontos.push_back(new Ponto(p->x - m, p->y - m, 0));
     this->pontos.push_back(new Ponto(p->x - 0.3*m, p->y + 6*m, 0));

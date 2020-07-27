@@ -61,7 +61,7 @@ void Virabrequim::rotaciona(float ang_x, float ang_y, float ang_z)
 		pontos[i]->y = py;
 	}
 
-	px = this->p_biela->x*m_rotacao[0][1] + this->p_biela->y*m_rotacao[0][1];
+	px = this->p_biela->x*m_rotacao[0][0] + this->p_biela->y*m_rotacao[0][1];
 	py = this->p_biela->x*m_rotacao[1][0] + this->p_biela->y*m_rotacao[1][1];
 
 	this->p_biela->x = px;
