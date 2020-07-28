@@ -43,7 +43,7 @@ void DrawMouseScreenCoords()
 void init()
 {
     motor2D = new Motor(1150, 50, 0, 100, 1);
-    motor3D = new Motor(150, 50, 0, 500, 1);
+    motor3D = new Motor(150, 50, 100, 100, 1);
 }
 
 //Função a ser chamada na render para organizar o código, basicamente desenha cada elemento
@@ -55,7 +55,7 @@ void desenha()
     motor2D->desenha2D();
 
     motor3D->movimento();
-    motor3D->desenha2D();
+    motor3D->desenha3D(200);
 }
 
 void render()

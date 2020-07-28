@@ -36,10 +36,10 @@ float Motor::calcula_angulo_pistao()
 void Motor::movimento()
 {
     this->virabrequim->rotaciona(0,0,this->rpm);
-    
+
     float ang;
     ang = this->calcula_angulo_pistao();
-    
+
     this->biela->encaixe(this->virabrequim->get_biela(), ang);
     this->pistao->encaixe(this->biela->get_pistao());
 }
@@ -51,9 +51,9 @@ void Motor::desenha2D()
     this->pistao->desenha2D();
 }
 
-void Motor::desenha3D()
+void Motor::desenha3D(float d)
 {
-    this->virabrequim->desenha3D();
-    this->biela->desenha3D();
-    this->pistao->desenha3D();
+    this->virabrequim->desenha3D(d);
+    this->biela->desenha3D(d);
+    //this->pistao->desenha3D(d);
 }

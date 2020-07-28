@@ -25,7 +25,7 @@ public:
     float calcula_angulo_pistao();
     void movimento();
     void desenha2D();
-    void desenha3D();
+    void desenha3D(float);
 };
 
 #endif // MOTOR_H_INCLUDED

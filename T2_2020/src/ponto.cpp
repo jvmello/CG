@@ -1,6 +1,6 @@
 //João Vitor Machado de Mello, matrícula 201511255, jvmello@inf.ufsm.br
 /*
-    Classe e funções utilizadas nos pontos que formam uma curva
+    Classe e funções utilizadas nos pontos
 */
 
 #include "ponto.h"

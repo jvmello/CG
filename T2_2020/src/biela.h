@@ -19,7 +19,7 @@ public:
     Ponto* get_pistao();
     void KeyInput(int key);
     void desenha2D();
-    void desenha3D();
+    void desenha3D(float);
 };
 
 #endif // BIELA_H_INCLUDED

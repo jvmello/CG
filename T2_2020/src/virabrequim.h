@@ -19,7 +19,7 @@ public:
     void translada(float, float, float);
     void rotaciona(float, float, float);
     void desenha2D();
-    void desenha3D();
+    void desenha3D(float);
 };
 
 #endif // VIRABREQUIM_H_INCLUDED
