@@ -7,11 +7,11 @@ Virabrequim::Virabrequim(float x, float y, float z, float tam)
     float m = tam/4;
 
     this->pontos.push_back(new Ponto(x - m, y - m, 0));
-    this->pontos.push_back(new Ponto(x - 0.5*m, y + 3*m, 0));
-    this->pontos.push_back(new Ponto(x + 0.5*m, y + 3*m, 0));
-    this->pontos.push_back(new Ponto(x + m, y - m, 0));
+    this->pontos.push_back(new Ponto(x - m, y + 2*m, 0));
+    this->pontos.push_back(new Ponto(x + 0.5*m, y + 2*m, 0));
+    this->pontos.push_back(new Ponto(x + 0.5*m, y - m, 0));
 
-    this->p_biela = new Ponto(x, y + 2.5*m, 0);
+    this->p_biela = new Ponto(x, y + 1.5*m, 0);
 }
 
 Ponto* Virabrequim::get_biela()
@@ -70,18 +70,22 @@ void Virabrequim::rotaciona(float ang_x, float ang_y, float ang_z)
 	this->translada(this->centro->x, this->centro->y, this->centro->z);
 }
 
-void Virabrequim::KeyInput(int key)
-{
-}
-
-void Virabrequim::desenha()
+void Virabrequim::desenha2D()
 {
     line(this->pontos[0]->x, this->pontos[0]->y, this->pontos[1]->x, this->pontos[1]->y);
     line(this->pontos[1]->x, this->pontos[1]->y, this->pontos[2]->x, this->pontos[2]->y);
     line(this->pontos[2]->x, this->pontos[2]->y, this->pontos[3]->x, this->pontos[3]->y);
     line(this->pontos[3]->x, this->pontos[3]->y, this->pontos[0]->x, this->pontos[0]->y);
 
-    circle(this->p_biela->x, this->p_biela->y, 20, 20);
+    circleFill(this->p_biela->x, this->p_biela->y, tam/20, 20);
+}
 
-    line(this->centro->x, this->centro->y, this->centro->x, this->centro->y+1000);
+void Virabrequim::desenha3D()
+{
+    line(this->pontos[0]->x, this->pontos[0]->y, this->pontos[1]->x, this->pontos[1]->y);
+    line(this->pontos[1]->x, this->pontos[1]->y, this->pontos[2]->x, this->pontos[2]->y);
+    line(this->pontos[2]->x, this->pontos[2]->y, this->pontos[3]->x, this->pontos[3]->y);
+    line(this->pontos[3]->x, this->pontos[3]->y, this->pontos[0]->x, this->pontos[0]->y);
+
+    circleFill(this->p_biela->x, this->p_biela->y, 2, 20);
 }

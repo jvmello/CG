@@ -18,8 +18,8 @@ public:
     
     void translada(float, float, float);
     void rotaciona(float, float, float);
-    void KeyInput(int);
-    void desenha();
+    void desenha2D();
+    void desenha3D();
 };
 
 #endif // VIRABREQUIM_H_INCLUDED

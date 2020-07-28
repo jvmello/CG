@@ -18,7 +18,8 @@ public:
     void rotaciona(float, float, float);
     Ponto* get_pistao();
     void KeyInput(int key);
-    void desenha();
+    void desenha2D();
+    void desenha3D();
 };
 
 #endif // BIELA_H_INCLUDED

@@ -6,10 +6,10 @@ Pistao::Pistao(float x, float y, float z, float tam)
 
 	float m = tam/4;
 
-	this->pontos.push_back(new Ponto(x - m, y - m, 0));
-    this->pontos.push_back(new Ponto(x - m, y + m, 0));
-    this->pontos.push_back(new Ponto(x + m, y + m, 0));
-    this->pontos.push_back(new Ponto(x + m, y - m, 0));
+	this->pontos.push_back(new Ponto(x - 1.5*m, y - m, z));
+    this->pontos.push_back(new Ponto(x - 1.5*m, y + m, z));
+    this->pontos.push_back(new Ponto(x + 1.5*m, y + m, z));
+    this->pontos.push_back(new Ponto(x + 1.5*m, y - m, z));
 
     this->camera_fixa = 0;
 }
@@ -35,11 +35,15 @@ void Pistao::encaixe(Ponto* p)
 	this->centro = p;
 }
 
-void Pistao::KeyInput(int key)
+void Pistao::desenha2D()
 {
+    line(this->pontos[0]->x, this->pontos[0]->y, this->pontos[1]->x, this->pontos[1]->y);
+    line(this->pontos[1]->x, this->pontos[1]->y, this->pontos[2]->x, this->pontos[2]->y);
+    line(this->pontos[2]->x, this->pontos[2]->y, this->pontos[3]->x, this->pontos[3]->y);
+    line(this->pontos[3]->x, this->pontos[3]->y, this->pontos[0]->x, this->pontos[0]->y);
 }
 
-void Pistao::desenha()
+void Pistao::desenha3D()
 {
     line(this->pontos[0]->x, this->pontos[0]->y, this->pontos[1]->x, this->pontos[1]->y);
     line(this->pontos[1]->x, this->pontos[1]->y, this->pontos[2]->x, this->pontos[2]->y);

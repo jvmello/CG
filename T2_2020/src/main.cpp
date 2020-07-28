@@ -30,6 +30,7 @@ int ang = 0;
 int d = 30;
 
 Motor* motor2D;
+Motor* motor3D;
 
 void DrawMouseScreenCoords()
 {
@@ -41,7 +42,8 @@ void DrawMouseScreenCoords()
 //Inicialização de elementos
 void init()
 {
-    motor2D = new Motor(800, 200, 200, 600, 1);
+    motor2D = new Motor(1150, 50, 0, 100, 1);
+    motor3D = new Motor(150, 50, 0, 500, 1);
 }
 
 //Função a ser chamada na render para organizar o código, basicamente desenha cada elemento
@@ -50,7 +52,10 @@ void desenha()
     color(0, 0, 0);
 
     motor2D->movimento();
-    motor2D->desenha();
+    motor2D->desenha2D();
+
+    motor3D->movimento();
+    motor3D->desenha2D();
 }
 
 void render()
@@ -61,6 +66,17 @@ void render()
 //funcao chamada toda vez que uma tecla for pressionada.
 void keyboard(int key)
 {
+    if(key == 43) //+
+    {
+        motor2D->rpm += 0.05;
+        motor3D->rpm += 0.05;
+    }
+
+    if(key == 45) //+
+    {
+        motor2D->rpm -= 0.05;
+        motor3D->rpm -= 0.05;
+    }
 }
 
 //funcao chamada toda vez que uma tecla for liberada

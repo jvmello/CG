@@ -7,8 +7,8 @@ Biela::Biela(float x, float y, float z, float tam)
 
     float m = tam/4;
     this->pontos.push_back(new Ponto(x - m, y - m, 0));
-    this->pontos.push_back(new Ponto(x - 0.3*m, y + 6*m, 0));
-    this->pontos.push_back(new Ponto(x + 0.3*m, y + 6*m, 0));
+    this->pontos.push_back(new Ponto(x - m, y + 6*m, 0));
+    this->pontos.push_back(new Ponto(x + m, y + 6*m, 0));
     this->pontos.push_back(new Ponto(x + m, y - m, 0));
 
     this->p_pistao = new Ponto(x, y + 5.5*m, 0);
@@ -65,13 +65,13 @@ void Biela::encaixe(Ponto* p, float ang)
 
     float m = this->tam/4;
     this->pontos.push_back(new Ponto(p->x - m, p->y - m, 0));
-    this->pontos.push_back(new Ponto(p->x - 0.3*m, p->y + 6*m, 0));
-    this->pontos.push_back(new Ponto(p->x + 0.3*m, p->y + 6*m, 0));
+    this->pontos.push_back(new Ponto(p->x - m, p->y + 6*m, 0));
+    this->pontos.push_back(new Ponto(p->x + m, p->y + 6*m, 0));
     this->pontos.push_back(new Ponto(p->x + m, p->y - m, 0));
 
     this->p_pistao = new Ponto(p->x, p->y + 5.5*m, 0);
 
-    this->rotaciona(0,0,ang);
+    this->rotaciona(0, 0, ang);
 }
 
 Ponto* Biela::get_pistao()
@@ -79,11 +79,17 @@ Ponto* Biela::get_pistao()
 	return this->p_pistao;
 }
 
-void Biela::KeyInput(int key)
+void Biela::desenha2D()
 {
+    line(this->pontos[0]->x, this->pontos[0]->y, this->pontos[1]->x, this->pontos[1]->y);
+    line(this->pontos[1]->x, this->pontos[1]->y, this->pontos[2]->x, this->pontos[2]->y);
+    line(this->pontos[2]->x, this->pontos[2]->y, this->pontos[3]->x, this->pontos[3]->y);
+    line(this->pontos[3]->x, this->pontos[3]->y, this->pontos[0]->x, this->pontos[0]->y);
+
+    circleFill(this->p_pistao->x, this->p_pistao->y, tam/20, 20);
 }
 
-void Biela::desenha()
+void Biela::desenha3D()
 {
     line(this->pontos[0]->x, this->pontos[0]->y, this->pontos[1]->x, this->pontos[1]->y);
     line(this->pontos[1]->x, this->pontos[1]->y, this->pontos[2]->x, this->pontos[2]->y);

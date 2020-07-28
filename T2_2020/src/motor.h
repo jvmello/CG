@@ -15,16 +15,17 @@ public:
     float tam;
     int num_pistao;
     Ponto* centro;
+    float rpm = 0.8;
 
     Motor(float, float, float, float tamanho, int);
 
     void translada(Ponto*);
     void rotaciona(float, float, float);
-    void KeyInput(int);
 
     float calcula_angulo_pistao();
     void movimento();
-    void desenha();
+    void desenha2D();
+    void desenha3D();
 };
 
 #endif // MOTOR_H_INCLUDED
