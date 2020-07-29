@@ -15,8 +15,13 @@ class Pistao
 	    Pistao(float, float, float, float);
 
 	    void translada(float, float, float);
-	    void rotaciona(float, float, float);
+
 	    void encaixe(Ponto*);
+
+	    void rotacionaX(float, float, float);
+    	void rotacionaY(float, float, float);
+    	void rotacionaZ(float, float, float);
+
 	    void desenha2D();
 	    void desenha3D(float);
 };

@@ -20,7 +20,9 @@ public:
     Motor(float, float, float, float tamanho, int);
 
     void translada(Ponto*);
-    void rotaciona(float, float, float);
+    void rotacionaX(float, float, float);
+    void rotacionaY(float, float, float);
+    void rotacionaZ(float, float, float);
 
     float calcula_angulo_pistao();
     void movimento();
@@ -28,4 +30,4 @@ public:
     void desenha3D(float);
 };
 
-#endif // MOTOR_H_INCLUDED
+#endif

@@ -15,11 +15,16 @@ public:
 
     void translada(float, float, float);
     void encaixe(Ponto*, float);
-    void rotaciona(float, float, float);
+    
+    void rotacionaX(float);
+    void rotacionaY(float);
+    void rotacionaZ(float);
+    
     Ponto* get_pistao();
+
     void KeyInput(int key);
     void desenha2D();
     void desenha3D(float);
 };
 
-#endif // BIELA_H_INCLUDED
+#endif

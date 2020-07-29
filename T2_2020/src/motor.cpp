@@ -20,12 +20,30 @@ Motor::Motor(float x, float y, float z, float tam, int num_pistao)
 
 void Motor::translada(Ponto* p)
 {
-
+    this->virabrequim->translada(p->x, p->y, p->z);
+    this->biela->translada(p->x, p->y, p->z);
+    this->pistao->translada(p->x, p->y, p->z);   
 }
 
-void Motor::rotaciona(float angle_x, float angle_y, float angle_z)
+void Motor::rotacionaX(float angle_x, float angle_y, float angle_z)
 {
+    this->virabrequim->rotacionaX(angle_x, angle_y, angle_z);
+    this->biela->rotacionaX(angle_x, angle_y, angle_z);
+    this->pistao->rotacionaX(angle_x, angle_y, angle_z);
+}
 
+void Motor::rotacionaY(float angle_x, float angle_y, float angle_z)
+{
+    this->virabrequim->rotacionaY(angle_x, angle_y, angle_z);
+    this->biela->rotacionaY(angle_x, angle_y, angle_z);
+    this->pistao->rotacionaY(angle_x, angle_y, angle_z);
+}
+
+void Motor::rotacionaZ(float angle_x, float angle_y, float angle_z)
+{
+    this->virabrequim->rotacionaZ(angle_x, angle_y, angle_z);
+    this->biela->rotacionaZ(angle_x, angle_y, angle_z);
+    this->pistao->rotacionaZ(angle_x, angle_y, angle_z);
 }
 
 float Motor::calcula_angulo_pistao()
@@ -35,7 +53,7 @@ float Motor::calcula_angulo_pistao()
 
 void Motor::movimento()
 {
-    this->virabrequim->rotaciona(0,0,this->rpm);
+    this->virabrequim->rotaciona(0, 0, this->rpm);
 
     float ang;
     ang = this->calcula_angulo_pistao();
@@ -55,5 +73,5 @@ void Motor::desenha3D(float d)
 {
     this->virabrequim->desenha3D(d);
     this->biela->desenha3D(d);
-    //this->pistao->desenha3D(d);
+    this->pistao->desenha3D(d);
 }

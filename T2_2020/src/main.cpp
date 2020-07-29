@@ -27,7 +27,7 @@ int mouseX, mouseY;
 int op = 0;
 int ang = 0;
 
-int d = 30;
+int d = 200;
 
 Motor* motor2D;
 Motor* motor3D;
@@ -55,7 +55,7 @@ void desenha()
     motor2D->desenha2D();
 
     motor3D->movimento();
-    motor3D->desenha3D(200);
+    motor3D->desenha3D(d);
 }
 
 void render()
@@ -77,12 +77,31 @@ void keyboard(int key)
         motor2D->rpm -= 0.05;
         motor3D->rpm -= 0.05;
     }
+
+    if(key == 119) d+=10; //W
+    if(key == 115) d-=10; //S
+    
+    if(key == 97) //A
+    {
+        motor3D->translada(new Ponto(0, 1, 0));
+    }
+
+    if(key == 100) //D
+    {
+        //motor3D->translada(new Ponto(1, 0, 0));
+    }
+
+    if(key == 100) //Z
+    {
+        //motor3D->translada(new Ponto(0, 0, 1));
+        motor3D->rotaciona(1, 1, 0);
+    }
 }
 
 //funcao chamada toda vez que uma tecla for liberada
 void keyboardUp(int key)
 {
-    //printf("\nLiberou: %d" , key);
+    printf("\nLiberou: %d" , key);
 }
 
 //funcao para tratamento de mouse: cliques, movimentos e arrastos
