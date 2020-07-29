@@ -1,3 +1,9 @@
+//João Vitor Machado de Mello, matrícula 201511255, jvmello@inf.ufsm.br
+/*
+    Classe e funções utilizadas na biela do motor
+*/
+
+
 #ifndef BIELA_H_INCLUDED
 #define BIELA_H_INCLUDED
 

@@ -1,3 +1,9 @@
+//João Vitor Machado de Mello, matrícula 201511255, jvmello@inf.ufsm.br
+/*
+    Classe e funções do motor
+*/
+
+
 #ifndef MOTOR_H_INCLUDED
 #define MOTOR_H_INCLUDED
 
@@ -13,18 +19,17 @@ public:
     Biela* biela;
     Pistao* pistao;
     float tam;
-    int num_pistao;
     Ponto* centro;
-    float rpm = 0.8;
+    float rpm = 0.6; //rpm pré-definido
 
-    Motor(float, float, float, float tamanho, int);
+    Motor(float, float, float, float);
 
-    void translada(Ponto*);
-    void rotacionaX(float, float, float);
-    void rotacionaY(float, float, float);
-    void rotacionaZ(float, float, float);
+    void translada(float, float, float);
+    void rotacionaX(float);
+    void rotacionaY(float);
+    void rotacionaZ(float);
 
-    float calcula_angulo_pistao();
+    float calcula_angulo_pistao(Ponto*, Ponto*);
     void movimento();
     void desenha2D();
     void desenha3D(float);

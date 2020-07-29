@@ -1,6 +1,6 @@
 //João Vitor Machado de Mello, matrícula 201511255, jvmello@inf.ufsm.br
 /*
-    Classe e funções utilizadas nos pontos que formam uma figura
+    Classe e funções utilizadas nos pontos que formam as figuras
 */
 
 #include "gl_canvas2d.h"
@@ -20,6 +20,12 @@ class Ponto
         int    get_x(void);
         int    get_y(void);
         int    get_z(void);
+
+        void translada(float, float, float);
+
+        void rotacionaX(float, Ponto*);
+        void rotacionaY(float, Ponto*);
+        void rotacionaZ(float, Ponto*);
 };
 
 #endif

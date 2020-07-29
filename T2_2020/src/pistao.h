@@ -1,3 +1,8 @@
+//João Vitor Machado de Mello, matrícula 201511255, jvmello@inf.ufsm.br
+/*
+    Classes e funções utilizadas no pistão do motor
+*/
+
 #include <vector>
 #include "ponto.h"
 
@@ -18,9 +23,9 @@ class Pistao
 
 	    void encaixe(Ponto*);
 
-	    void rotacionaX(float, float, float);
-    	void rotacionaY(float, float, float);
-    	void rotacionaZ(float, float, float);
+	    void rotacionaX(float);
+    	void rotacionaY(float);
+    	void rotacionaZ(float);
 
 	    void desenha2D();
 	    void desenha3D(float);

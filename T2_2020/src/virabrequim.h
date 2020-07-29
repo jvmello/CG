@@ -1,3 +1,8 @@
+//João Vitor Machado de Mello, matrícula 201511255, jvmello@inf.ufsm.br
+/*
+    Classe e funções utilizadas no virabrequim do motor
+*/
+
 #ifndef VIRABREQUIM_H_INCLUDED
 #define VIRABREQUIM_H_INCLUDED
 
@@ -7,10 +12,9 @@
 class Virabrequim{
 public:
     std::vector<Ponto*> pontos;
-    float tamanho;
     float tam;
-    Ponto* centro;
-    Ponto* p_biela;
+    Ponto* centro; //centro para transformações
+    Ponto* p_biela; //ponto da biela
 
     Virabrequim(float, float, float, float);
 

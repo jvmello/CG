@@ -1,22 +1,28 @@
+//João Vitor Machado de Mello, matrícula 201511255, jvmello@inf.ufsm.br
+/*
+    Funções utilizadas no virabrequim do motor
+*/
+
 #include "virabrequim.h"
 
+//inicializacao
 Virabrequim::Virabrequim(float x, float y, float z, float tam)
 {
     this->centro = new Ponto(x, y, z);
     this->tam = tam;
-    float m = tam/4;
+    float uni = tam/5;
 
-    this->pontos.push_back(new Ponto(x - 0.5*m, y - 2*m, z - m));
-    this->pontos.push_back(new Ponto(x - 0.5*m, y + 2*m, z - m));
-    this->pontos.push_back(new Ponto(x + 0.5*m, y + 2*m, z - m));
-    this->pontos.push_back(new Ponto(x + 0.5*m, y - 2*m, z - m));
+    this->pontos.push_back(new Ponto(x - 0.5*uni, y - 2*uni, z - uni));
+    this->pontos.push_back(new Ponto(x - 0.5*uni, y + 2*uni, z - uni));
+    this->pontos.push_back(new Ponto(x + 0.5*uni, y + 2*uni, z - uni));
+    this->pontos.push_back(new Ponto(x + 0.5*uni, y - 2*uni, z - uni));
 
-    this->pontos.push_back(new Ponto(x - 0.5*m, y - 2*m, z + m));
-    this->pontos.push_back(new Ponto(x - 0.5*m, y + 2*m, z + m));
-    this->pontos.push_back(new Ponto(x + 0.5*m, y + 2*m, z + m));
-    this->pontos.push_back(new Ponto(x + 0.5*m, y - 2*m, z + m));
+    this->pontos.push_back(new Ponto(x - 0.5*uni, y - 2*uni, z + uni));
+    this->pontos.push_back(new Ponto(x - 0.5*uni, y + 2*uni, z + uni));
+    this->pontos.push_back(new Ponto(x + 0.5*uni, y + 2*uni, z + uni));
+    this->pontos.push_back(new Ponto(x + 0.5*uni, y - 2*uni, z + uni));
 
-    this->p_biela = new Ponto(x, y + 1.5*m, z);
+    this->p_biela = new Ponto(x, y + 1.5*uni, z);
 }
 
 Ponto* Virabrequim::get_biela()
@@ -29,116 +35,51 @@ Ponto* Virabrequim::get_centro()
 	return this->centro;
 }
 
+//Faz a translação dos pontos
 void Virabrequim::translada(float x, float y, float z)
 {
 	for(unsigned int i = 0; i < this->pontos.size(); i++)
 	{
-        this->pontos[i]->x += x;
-        this->pontos[i]->y += y;
-        this->pontos[i]->z += z;
+        this->pontos[i]->translada(x, y, z);
     }
 
-    this->p_biela->x += x;
-    this->p_biela->y += y;
-    this->p_biela->z += z;
+    this->p_biela->translada(x, y, z);
 }
 
+//Rotaciona os pontos no eixo X
 void Virabrequim::rotacionaX(float angulo)
 {
-    float ang = angulo * 3.1415/180;
-    float px, py;
-
-    this->translada(-this->centro->x, -this->centro->y, -this->centro->z);
-
-    double m_rotacao[3][3] =
-    {
-        cos(ang), -sin(ang), 0,
-        sin(ang), cos(ang),  0,
-        0,        0,         1
-    };
-
     for(unsigned int i = 0; i < this->pontos.size(); i++)
     {
-        px = pontos[i]->x*m_rotacao[0][0] + pontos[i]->y*m_rotacao[0][1];
-        py = pontos[i]->x*m_rotacao[1][0] + pontos[i]->y*m_rotacao[1][1];
-
-        pontos[i]->x = px;
-        pontos[i]->y = py;
+        this->pontos[i]->rotacionaX(angulo, this->centro);
     }
 
-    px = this->p_biela->x*m_rotacao[0][0] + this->p_biela->y*m_rotacao[0][1];
-    py = this->p_biela->x*m_rotacao[1][0] + this->p_biela->y*m_rotacao[1][1];
-
-    this->p_biela->x = px;
-    this->p_biela->y = py;
-
-    this->translada(this->centro->x, this->centro->y, this->centro->z);
+    this->p_biela->rotacionaX(angulo, this->centro);
 }
 
+//Rotaciona os pontos no eixo Y
 void Virabrequim::rotacionaY(float angulo)
 {
-    float ang = angulo * 3.1415/180;
-    float px, py;
-
-    this->translada(-this->centro->x, -this->centro->y, -this->centro->z);
-
-    double m_rotacao[3][3] =
-    {
-        cos(ang), -sin(ang), 0,
-        sin(ang), cos(ang),  0,
-        0,        0,         1
-    };
-
     for(unsigned int i = 0; i < this->pontos.size(); i++)
     {
-        px = pontos[i]->x*m_rotacao[0][0] + pontos[i]->y*m_rotacao[0][1];
-        py = pontos[i]->x*m_rotacao[1][0] + pontos[i]->y*m_rotacao[1][1];
-
-        pontos[i]->x = px;
-        pontos[i]->y = py;
+        this->pontos[i]->rotacionaY(angulo, this->centro);
     }
 
-    px = this->p_biela->x*m_rotacao[0][0] + this->p_biela->y*m_rotacao[0][1];
-    py = this->p_biela->x*m_rotacao[1][0] + this->p_biela->y*m_rotacao[1][1];
-
-    this->p_biela->x = px;
-    this->p_biela->y = py;
-
-    this->translada(this->centro->x, this->centro->y, this->centro->z);
+    this->p_biela->rotacionaY(angulo, this->centro);
 }
 
-void Virabrequim::rotacionaZ(float ang_x, float ang_y, float ang_z)
+//Rotaciona os pontos no eixo Z
+void Virabrequim::rotacionaZ(float angulo)
 {
-	float ang = ang_z * 3.1415/180;
-	float px, py;
+    for(unsigned int i = 0; i < this->pontos.size(); i++)
+    {
+        this->pontos[i]->rotacionaZ(angulo, this->centro);
+    }
 
-	this->translada(-this->centro->x, -this->centro->y, -this->centro->z);
-
-	double m_rotacao[3][3] =
-	{
-		cos(ang), -sin(ang), 0,
-		sin(ang), cos(ang),  0,
-		0,        0,         1
-	};
-
-	for(unsigned int i = 0; i < this->pontos.size(); i++)
-	{
-		px = pontos[i]->x*m_rotacao[0][0] + pontos[i]->y*m_rotacao[0][1];
-		py = pontos[i]->x*m_rotacao[1][0] + pontos[i]->y*m_rotacao[1][1];
-
-		pontos[i]->x = px;
-		pontos[i]->y = py;
-	}
-
-	px = this->p_biela->x*m_rotacao[0][0] + this->p_biela->y*m_rotacao[0][1];
-	py = this->p_biela->x*m_rotacao[1][0] + this->p_biela->y*m_rotacao[1][1];
-
-	this->p_biela->x = px;
-	this->p_biela->y = py;
-
-	this->translada(this->centro->x, this->centro->y, this->centro->z);
+    this->p_biela->rotacionaZ(angulo, this->centro);
 }
 
+//Desenha um virabrequim comum em 2D
 void Virabrequim::desenha2D()
 {
     line(this->pontos[0]->x, this->pontos[0]->y, this->pontos[1]->x, this->pontos[1]->y);
@@ -149,40 +90,35 @@ void Virabrequim::desenha2D()
     circleFill(this->p_biela->x, this->p_biela->y, tam/20, 20);
 }
 
+//Desenha o cubo 3D
 void Virabrequim::desenha3D(float d)
 {
-    std::vector<Ponto*> pontos2d;
-    Ponto* p_biela2d = new Ponto(0, 0, 0);
+    std::vector<Ponto*> pontos3d; //pontos convertidos
 
     for(int i = 0; i<8; i++)
     {
     	Ponto* aux = new Ponto(this->pontos[i]->x*d/this->pontos[i]->z, this->pontos[i]->y*d/this->pontos[i]->z, 0);
-        pontos2d.push_back(new Ponto(aux->x, aux->y, aux->z));
+        pontos3d.push_back(new Ponto(aux->x, aux->y, aux->z));
     }
 
-    //p_biela2d->x = p_biela->x*d/p_biela->z;
-    //p_biela2d->y = p_biela->y*d/p_biela->z;
-
-    for(int i = 0; i<8; i++){
-        pontos2d[i]->x += this->centro->x;
-        pontos2d[i]->y += this->centro->y;
+    for(int i = 0; i<8; i++)
+    {
+        pontos3d[i]->x += this->centro->x;
+        pontos3d[i]->y += this->centro->y;
     }
 
-    //p_biela2d->x += centro->x;
-    //p_biela2d->y += centro->y;
+    line(pontos3d[0]->x, pontos3d[0]->y, pontos3d[1]->x, pontos3d[1]->y);
+    line(pontos3d[1]->x, pontos3d[1]->y, pontos3d[2]->x, pontos3d[2]->y);
+    line(pontos3d[2]->x, pontos3d[2]->y, pontos3d[3]->x, pontos3d[3]->y);
+    line(pontos3d[0]->x, pontos3d[0]->y, pontos3d[3]->x, pontos3d[3]->y);
 
-    line(pontos2d[0]->x, pontos2d[0]->y, pontos2d[1]->x, pontos2d[1]->y);
-    line(pontos2d[1]->x, pontos2d[1]->y, pontos2d[2]->x, pontos2d[2]->y);
-    line(pontos2d[2]->x, pontos2d[2]->y, pontos2d[3]->x, pontos2d[3]->y);
-    line(pontos2d[0]->x, pontos2d[0]->y, pontos2d[3]->x, pontos2d[3]->y);
+    line(pontos3d[4]->x, pontos3d[4]->y, pontos3d[5]->x, pontos3d[5]->y);
+    line(pontos3d[5]->x, pontos3d[5]->y, pontos3d[6]->x, pontos3d[6]->y);
+    line(pontos3d[6]->x, pontos3d[6]->y, pontos3d[7]->x, pontos3d[7]->y);
+    line(pontos3d[4]->x, pontos3d[4]->y, pontos3d[7]->x, pontos3d[7]->y);
 
-    line(pontos2d[4]->x, pontos2d[4]->y, pontos2d[5]->x, pontos2d[5]->y);
-    line(pontos2d[5]->x, pontos2d[5]->y, pontos2d[6]->x, pontos2d[6]->y);
-    line(pontos2d[6]->x, pontos2d[6]->y, pontos2d[7]->x, pontos2d[7]->y);
-    line(pontos2d[4]->x, pontos2d[4]->y, pontos2d[7]->x, pontos2d[7]->y);
-
-    line(pontos2d[1]->x, pontos2d[1]->y, pontos2d[5]->x, pontos2d[5]->y);
-    line(pontos2d[2]->x, pontos2d[2]->y, pontos2d[6]->x, pontos2d[6]->y);
-    line(pontos2d[3]->x, pontos2d[3]->y, pontos2d[7]->x, pontos2d[7]->y);
-    line(pontos2d[4]->x, pontos2d[4]->y, pontos2d[0]->x, pontos2d[0]->y);
+    line(pontos3d[1]->x, pontos3d[1]->y, pontos3d[5]->x, pontos3d[5]->y);
+    line(pontos3d[2]->x, pontos3d[2]->y, pontos3d[6]->x, pontos3d[6]->y);
+    line(pontos3d[3]->x, pontos3d[3]->y, pontos3d[7]->x, pontos3d[7]->y);
+    line(pontos3d[4]->x, pontos3d[4]->y, pontos3d[0]->x, pontos3d[0]->y);
 }
